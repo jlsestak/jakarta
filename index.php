@@ -12,7 +12,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 $f3->route('GET /', function() {
-     echo "Adding index page";
+     echo "Hello world";
    // $view = new Template();
  //   echo $view->render('views/home.html');
 });
