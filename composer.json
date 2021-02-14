@@ -1,0 +1,16 @@
+{
+  "name": "sadhikari5/jakarta",
+  "authors": [
+    {
+      "name": "Safal Adhikar",
+      "email": "sadhikari5@mail.greenriver.edu"
+    },
+    {
+      "name": "Jessica Sestak",
+      "email": "jsestak2@greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
