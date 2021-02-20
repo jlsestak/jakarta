@@ -8,6 +8,6 @@ class Users
     private $_isPetPrime;
     private $_userPreference;
 
-    
+
 
 }
