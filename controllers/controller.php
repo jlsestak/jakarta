@@ -23,4 +23,25 @@ class Controller
         echo $view->render('views/product.html');
     }
 
+    // Display Product Page
+    function cat()
+    {
+        $view = new Template();
+        echo $view->render('views/cat.html');
+    }
+
+    // Display Product Page
+    function dog()
+    {
+        $view = new Template();
+        echo $view->render('views/dog.html');
+    }
+
+    // Display Product Page
+    function cart()
+    {
+        $view = new Template();
+        echo $view->render('views/cart.html');
+    }
+
 }

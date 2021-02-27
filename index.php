@@ -37,6 +37,30 @@ $f3->route('GET|POST /product', function ($f3){
 });
 
 
+// Define a cat page route
+$f3->route('GET|POST /cat', function ($f3){
+    global $controller;
+    $controller->cat();
+});
+
+// Define a dog page route
+$f3->route('GET|POST /dog', function ($f3){
+    global $controller;
+    $controller->dog();
+});
+
+// Define a cart page route
+$f3->route('GET|POST /cart', function ($f3){
+    global $controller;
+    $controller->cart();
+});
+
+
+
+
+
+
+
 
 
 //Run fat free
