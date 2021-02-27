@@ -15,4 +15,12 @@ class Controller
         $view = new Template();
         echo $view->render('views/home.html');
     }
+
+    // Display Product Page
+    function product()
+    {
+        $view = new Template();
+        echo $view->render('views/product.html');
+    }
+
 }

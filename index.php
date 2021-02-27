@@ -19,12 +19,20 @@ $controller = new Controller($f3);
 $products = new Products();
 $users = new Users();
 
+// Fatfree error reporting
 $f3->set('DEBUG', 3);
 
+// Define a default route
 $f3->route('GET /', function() {
 
     global $controller;
     $controller->home();
+});
+
+// Define a product route
+$f3->route('GET|POST /product', function ($f3){
+   global $controller;
+   $controller->product();
 });
 
 
