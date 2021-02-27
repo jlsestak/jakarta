@@ -15,7 +15,6 @@ class Products
     {
         $this->_petItem = $_petItem;
         $this->_size = $_size;
-
     }
 
     /**
@@ -49,5 +48,4 @@ class Products
     {
         $this->_size = $size;
     }
-
 }

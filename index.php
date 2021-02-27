@@ -7,15 +7,27 @@ error_reporting(E_ALL);
 //Require the autoload file
 require_once('vendor/autoload.php');
 
+// Start a session
+
 //Create an instance of the Base class
 $f3 = Base::instance();
+$validator = new Validate();
+$dataLayer = new DataLayer();
+$controller = new Controller($f3);
+
+// Classes
+$products = new Products();
+$users = new Users();
+
 $f3->set('DEBUG', 3);
 
 $f3->route('GET /', function() {
-    // echo "Hello world";
-    $view = new Template();
-    echo $view->render('views/home.html');
+
+    global $controller;
+    $controller->home();
 });
+
+
 
 
 //Run fat free
