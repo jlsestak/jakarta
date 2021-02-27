@@ -11,11 +11,13 @@ class Products
      * @param $_petItem
      * @param $_size
      */
+    /*
     public function __construct($_petItem, $_size)
     {
         $this->_petItem = $_petItem;
         $this->_size = $_size;
     }
+    */
 
     /**
      * @return mixed

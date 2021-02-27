@@ -8,16 +8,17 @@ error_reporting(E_ALL);
 require_once('vendor/autoload.php');
 
 // Start a session
+session_start();
 
 //Create an instance of the Base class
 $f3 = Base::instance();
-$validator = new Validate();
-$dataLayer = new DataLayer();
+//$validator = new Validate();
+//$dataLayer = new DataLayer();
 $controller = new Controller($f3);
 
 // Classes
-$products = new Products();
-$users = new Users();
+//$products = new Products();
+//$users = new Users();
 
 // Fatfree error reporting
 $f3->set('DEBUG', 3);
