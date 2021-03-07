@@ -48,6 +48,30 @@ $f3->route('GET|POST /product', function ($f3){
    $controller->product();
 });
 
+// Define an about route
+$f3->route('GET /about', function ($f3){
+    global $controller;
+    $controller->about();
+});
+
+// Define a contact route
+$f3->route('GET /contact', function ($f3){
+    global $controller;
+    $controller->contact();
+});
+
+// Define a login route
+$f3->route('GET|POST /login', function ($f3){
+    global $controller;
+    $controller->login();
+});
+
+// Define a registration route
+$f3->route('GET|POST /register', function ($f3){
+    global $controller;
+    $controller->register();
+});
+
 
 
 
