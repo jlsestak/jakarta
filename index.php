@@ -30,13 +30,6 @@ $f3->route('GET /', function() {
     $controller->home();
 });
 
-// Define a product route
-$f3->route('GET|POST /product', function ($f3){
-   global $controller;
-   $controller->product();
-});
-
-
 // Define a cat page route
 $f3->route('GET|POST /cat', function ($f3){
     global $controller;
@@ -48,6 +41,15 @@ $f3->route('GET|POST /dog', function ($f3){
     global $controller;
     $controller->dog();
 });
+
+// Define a product route
+$f3->route('GET|POST /product', function ($f3){
+   global $controller;
+   $controller->product();
+});
+
+
+
 
 // Define a cart page route
 $f3->route('GET|POST /cart', function ($f3){

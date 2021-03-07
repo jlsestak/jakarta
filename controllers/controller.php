@@ -17,13 +17,6 @@ class Controller
     }
 
     // Display Product Page
-    function product()
-    {
-        $view = new Template();
-        echo $view->render('views/product.html');
-    }
-
-    // Display Product Page
     function cat()
     {
         $view = new Template();
@@ -37,6 +30,13 @@ class Controller
         echo $view->render('views/dog.html');
     }
 
+    // Display Product Page
+    function product()
+    {
+        $view = new Template();
+        echo $view->render('views/product.html');
+    }
+    
     // Display Product Page
     function cart()
     {
