@@ -7,6 +7,9 @@ error_reporting(E_ALL);
 //Require the autoload file
 require_once('vendor/autoload.php');
 
+// Connect to the database
+require $_SERVER['DOCUMENT_ROOT'].'/../someFolder/config.php';
+
 // Start a session
 session_start();
 
@@ -71,9 +74,6 @@ $f3->route('GET|POST /register', function ($f3){
     global $controller;
     $controller->register();
 });
-
-
-
 
 // Define a cart page route
 $f3->route('GET|POST /cart', function ($f3){

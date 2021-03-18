@@ -41,6 +41,7 @@ class DataLayer
     /**
      * insertMember inserts the members information into the database
      */
+    /*
     function insertMember()
     {
         //get the member information
@@ -79,6 +80,7 @@ class DataLayer
         $statement->execute();
 
     }
+    */
 
 
     /**
@@ -108,6 +110,7 @@ class DataLayer
      * @param $member_id
      * @return associative array
      */
+    /*
     function getInterests($member_id)
     {
         //Define the query
@@ -124,5 +127,6 @@ class DataLayer
 
         return $result;
     }
+    */
 
 }

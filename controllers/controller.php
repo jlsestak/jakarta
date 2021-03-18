@@ -27,18 +27,29 @@ class Controller
     function dog()
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if(isset($_POST[]))
+
+            $dogToy = $_POST['dogtoy'];
+
+            if(isset($dogToy))
+            {
+                $_SESSION['product'] = $dogToy;
+                $this->_f3->reroute('/product');
+            }
         }
+
         $view = new Template();
         echo $view->render('views/dog.html');
     }
 
     // Display Product Page
-    function product($products)
+    function product()
     {
         global $datalayer;
+        $products = $_SESSION['product'];
+
         $product = $datalayer->getProduct($products);
         $this->_f3->set('product', $product);
+
         //Display a view
         $view = new Template();
         echo $view->render('views/product.html');

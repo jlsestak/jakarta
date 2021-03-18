@@ -19,19 +19,32 @@
 
     <p class="text-center h1">Shop the collection</p>
 
-    <div class="row">
+    <form method="post" action="#">
+        <div class="row">
 
-        <div class="col-lg-6 col-md-6 col-sm-10">
-            <img src="images/product/kong.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Kong">
-            <p class="fs-2 text-center" style="margin-left: 15px;">Kong</p>
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <img src="images/product/kong.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Kong">
+                <label>
+                    <p class="fs-2 text-center" style="margin-left: 15px;">Kong</p>
+                    <input type="radio" name="dogtoy" value="kong">
+                </label>
+
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <img src="images/product/bonebone.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Rope">
+                <label>
+                    <p class="fs-2 text-center">Bonebone Bone</p>
+                    <input type="radio" name="dogtoy" value="bonebone">
+                </label>
+            </div>
         </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-10">
-            <img src="images/product/bonebone.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Rope">
-            <p class="fs-2 text-center">Bonebone Bone</p>
+        <div>
+            <input type="submit" value="Next >">
         </div>
+    </form>
 
-    </div>
 </div>
 
 <include href="views/footer.html"></include>
