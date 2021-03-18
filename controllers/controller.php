@@ -26,13 +26,20 @@ class Controller
     // Display Dog Page
     function dog()
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(isset($_POST[]))
+        }
         $view = new Template();
         echo $view->render('views/dog.html');
     }
 
     // Display Product Page
-    function product()
+    function product($products)
     {
+        global $datalayer;
+        $product = $datalayer->getProduct($products);
+        $this->_f3->set('product', $product);
+        //Display a view
         $view = new Template();
         echo $view->render('views/product.html');
     }

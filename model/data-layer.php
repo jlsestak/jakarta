@@ -15,7 +15,16 @@
         ('John', 'Doe', 'johndoe@gmail.com', 'jdoe', sha1('doe456'));
 
  */
+/*
+CREATE TABLE product (
+    productid varchar(20) NOT NULL PRIMARY KEY,
+        description varchar(100) NOT NULL,
+        price decimal(6,2) NOT NULL,
+        image1 varchar(30) NOT NULL,
+        image2 varchar(30) NOT NULL
+    );
 
+*/
 class DataLayer
 {
     private $_dbh;
@@ -71,36 +80,16 @@ class DataLayer
 
     }
 
-    /**
-     * getMembers gets the members information from the database and orders by last name
-     * @return associative array
-     */
-    function getMembers()
-    {
-        //Define the query
-        $sql = "SELECT * FROM member ORDER BY lname";
-
-        //Prepare the statement
-        $statement = $this->_dbh->prepare($sql);
-
-        //Execute
-        $statement->execute();
-
-        //Get the results
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-    }
 
     /**
      * getMember($member_id) gets a single member from the database using their member id
      * @param $member_id
      * @return associative array
      */
-    function getMember($member_id)
+    function getProduct($productid)
     {
         //Define the query
-        $sql = "SELECT * FROM member WHERE member_id = $member_id";
+        $sql = "SELECT * FROM product WHERE productid = $productid";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
