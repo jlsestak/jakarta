@@ -1,8 +1,0 @@
-<?php
-
-class PremiumUser extends Users
-{
-    
-}
-
-
