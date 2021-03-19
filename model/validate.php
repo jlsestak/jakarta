@@ -37,16 +37,6 @@ class Validate
     }
 
     /**
-     * validEmail() Checks to see if the user has a valid email
-     * @param String $email
-     * @return bool
-     */
-    function validEmail($email)
-    {
-        return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
-    }
-
-    /**
      * validUserName checks to see if a valid username is input
      * @param $username takes in username String
      * @return boolean
