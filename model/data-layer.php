@@ -85,27 +85,32 @@ class DataLayer
 
     /**
      * getMember($member_id) gets a single member from the database using their member id
-     * @param $member_id
-     * @return associative array
+     * @param $productid
      */
     function getProduct($productid)
     {
         //Define the query
-        $sql = "SELECT * FROM product WHERE productid = :product_id";
+        $sql = "SELECT * FROM product WHERE productid = $productid";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         //Execute
-        $id = $productid;
-        $statement->bindParam(':product_id', $id, PDO::PARAM_STR);
+       // $id = $productid;
+       // $statement->bindParam(':product_id', $id, PDO::PARAM_STR);
 
         $statement->execute();
 
         //Get the results
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+     //   $product = $_SESSION['product'];
+      //  $product = $product->getDescription($result['description']);
+      //  $product= $product->getPrice($result['price']);
+     //   $product = $product->getImage1($result['image1']);
+      //  $product = $product->getImage2($result['image2']);
+      //  $_SESSION['product'] = $product;
+        return "HELLO";
 
-        return $result;
     }
 
     /**

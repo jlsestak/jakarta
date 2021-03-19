@@ -5,8 +5,8 @@ This e-commerce app (Playful Pets) will help customers buy pet accessories, toys
 You can view the project [here!](https://safal.greenriverdev.com/sdev328/jakarta/)
 
 ## UML Diagram
-![UML Diagram](images/PetStore.jpg)
+![UML Diagram](images/product/PetStore.jpg)
 
 ## ER Diagram
-![ER Diagram](images/ER.jpg)
+![ER Diagram](images/product/ER.jpg)
 
