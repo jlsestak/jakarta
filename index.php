@@ -16,7 +16,7 @@ session_start();
 //Create an instance of the Base class
 $f3 = Base::instance();
 //$validator = new Validate();
-//$dataLayer = new DataLayer();
+$dataLayer = new DataLayer($dbh);
 $controller = new Controller($f3);
 
 // Classes

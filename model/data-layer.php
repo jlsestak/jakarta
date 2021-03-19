@@ -102,7 +102,7 @@ class DataLayer
         //Get the results
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
+        return "fun";
     }
 
     /**
