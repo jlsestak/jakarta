@@ -26,13 +26,20 @@ class Controller
     // Display Dog Page
     function dog()
     {
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        global $dataLayer;
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
 
             $dogToy = $_POST['dogtoy'];
 
+            $product = new Products();
+
             if(isset($dogToy))
             {
-                $_SESSION['product'] = $dogToy;
+                $product->setProductId($dogToy);
+
+                $_SESSION['product'] = $product;
                 $this->_f3->reroute('/product');
             }
         }
@@ -45,9 +52,9 @@ class Controller
     function product()
     {
         global $datalayer;
-        $products = $_SESSION['product'];
 
-        $product = $datalayer->getProduct($products);
+        $product = $datalayer->getProduct($_SESSION['product']);
+
         $this->_f3->set('product', $product);
 
         //Display a view

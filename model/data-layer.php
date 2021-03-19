@@ -91,18 +91,21 @@ class DataLayer
     function getProduct($productid)
     {
         //Define the query
-        $sql = "SELECT * FROM product WHERE productid = $productid";
+        $sql = "SELECT * FROM product WHERE productid = :product_id";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         //Execute
+        $id = $productid;
+        $statement->bindParam(':product_id', $id, PDO::PARAM_STR);
+
         $statement->execute();
 
         //Get the results
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return "fun";
+        return $result;
     }
 
     /**

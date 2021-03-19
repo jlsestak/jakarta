@@ -16,6 +16,7 @@ class Products
      * @param $_image1
      * @param $_image2
      */
+    /*
     public function __construct($_productId, $_description, $_price, $_image1, $_image2)
     {
         $this->_productId = $_productId;
@@ -24,6 +25,7 @@ class Products
         $this->_image1 = $_image1;
         $this->_image2 = $_image2;
     }
+    */
 
     /**
      * @return mixed
