@@ -53,9 +53,15 @@ class Controller
     {
         global $datalayer;
 
-        $product = $datalayer->getProduct($_SESSION['product']);
+        echo "<pre>";
+        var_dump($_SESSION);
+        echo "</pre>";
 
-        $this->_f3->set('product', $product);
+        $sessionProduct = $_SESSION['product']->getProductId();
+
+        $product = $datalayer->getProduct($sessionProduct);
+
+        //$this->_f3->set('product', $product);
 
         //Display a view
         $view = new Template();
