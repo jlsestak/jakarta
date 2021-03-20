@@ -8,32 +8,31 @@
 
 </style>
 
-<h1>{{ @productType['productid']}}</h1>
-
-
-
 <div class="container">
+
     <!--Row -->
     <div class="row">
 
-        <div class="col-lg-6 col-md-6 col-sm-10">
-            <img src="images/product/{{@productType['image1']}}.jpg" alt="Picture of a cat and kitten" class="rounded-arty">
-            <img src="images/product/{{@productType['image2']}}.jpg" alt="Picture of a cat and kitten" class="rounded-arty">
-        </div>
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <img src="images/product/{{ @SESSION.product->getImage1() }}.jpg" alt='Picture of a cat and kitten' class='rounded-arty'>
+                <img src="images/product/{{ @SESSION.product->getImage2() }}.jpg" alt='Picture of a cat and kitten' class='rounded-arty'>
+            </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-10">
+            <div class="col-lg-6 col-md-6 col-sm-10">
 
+                <h3>Price</h3>
+                <p>{{ @SESSION.product->getPrice() }}</p>
 
-            <h3>style (dropdown)</h3>
+                <h3>quantity</h3>
 
-            <h3>quantity</h3>
+                <button>add to cart</button>
 
-            <button>add to cart</button>
+                <h3>product details</h3>
+                <p>{{ @SESSION.product->getDescription() }}</p>
 
-            <h3>product details</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        </div>
+            </div>
     </div>
+
 
 </div>
 

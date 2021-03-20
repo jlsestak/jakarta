@@ -15,21 +15,16 @@ session_start();
 
 //Create an instance of the Base class
 $f3 = Base::instance();
-
-$dataLayer = new DataLayer($dbh);
+$dataLayer = new DataLayer();
 $validator = new Validate($dataLayer);
 $controller = new Controller($f3);
-
-// Classes
-//$products = new Products();
-//$users = new Users();
+$database = new Database($dbh);
 
 // Fatfree error reporting
 $f3->set('DEBUG', 3);
 
 // Define a default route
 $f3->route('GET /', function() {
-
     global $controller;
     $controller->home();
 });
@@ -41,7 +36,7 @@ $f3->route('GET|POST /cat', function ($f3){
 });
 
 // Define a dog page route
-$f3->route('GET|POST /dog', function ($f3){
+$f3->route('GET|POST /dog', function (){
     global $controller;
     $controller->dog();
 });
@@ -81,14 +76,6 @@ $f3->route('GET|POST /cart', function ($f3){
     global $controller;
     $controller->cart();
 });
-
-
-
-
-
-
-
-
 
 //Run fat free
 $f3->run();
