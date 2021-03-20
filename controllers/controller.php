@@ -77,6 +77,9 @@ class Controller
     // Display Login Page
     function login()
     {
+        global $database;
+        global $validation;
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {}
         $view = new Template();
         echo $view->render('views/login.html');
     }
@@ -126,7 +129,7 @@ class Controller
                 $this->_f3->set('errors["email"]', "Please give a valid email");
             }
             //save username to session
-            if ($validator->validUserName($username) ) {
+            if ($validator->validUserName($username) && $validator->checkUserInUse($username)) {
                 $_SESSION['username'] = $username;
             } else if ($username == "") {
                 $this->_f3->set('errors["username"]', "Username cannot be blank");
@@ -142,9 +145,9 @@ class Controller
                 $_SESSION['password'] = $password;
             } else if ($password == "") {
                 $this->_f3->set('errors["password"]', "Password cannot be blank");
-        } else if ($validator->validPassword($password)) {
-            $this->_f3->set('errors["password"]', "Password must be valid");
-        }else if($confirmPass == "") {
+            } else if ($validator->validPassword($password)) {
+                $this->_f3->set('errors["password"]', "Password must be valid");
+            }else if($confirmPass == "") {
                 $this->_f3->set('errors["passCheck"]', "Password confirm your password");
             } else if($confirmPass != $password) {
                 $this->_f3->set('errors["passCheck"]', "Your password does not match");

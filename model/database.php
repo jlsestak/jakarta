@@ -101,6 +101,24 @@ class Database
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    function checkUserName($username){
+        $sql = "SELECT * FROM primeusers WHERE username = :username";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Execute
+        $id = $username;
+        $statement->bindParam(':username', $id, PDO::PARAM_STR);
+
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        if($username == $result['username']) {
+            return false;
+        }
+        return true;
+    }
 }
 
 

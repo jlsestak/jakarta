@@ -53,9 +53,9 @@ class Validate
      */
     function checkUserInUse($username)
     {
-        global $datalayer;
+        global $database;
 
-        return $datalayer->checkUserName($username);
+        return $database->checkUserName($username);
     }
 
     /**
