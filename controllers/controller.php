@@ -84,6 +84,7 @@ class Controller
     // Display Registration Page
     function register()
     {
+        global $database;
         global $datalayer;
         global $validator;
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -92,6 +93,7 @@ class Controller
             $email = $_POST['email'];
             $username = $_POST['username'];
             $password = $_POST['password'];
+            $confirmPass = $_POST['confirmPass'];
             //Save first name to session if valid
             if ($validator->validName($fname)) {
                 $_SESSION['fname'] = $_POST['fname'];
@@ -124,7 +126,7 @@ class Controller
                 $this->_f3->set('errors["email"]', "Please give a valid email");
             }
             //save username to session
-            if ($validator->validUserName($username) && $validator->checkUserInUse($username)) {
+            if ($validator->validUserName($username) ) {
                 $_SESSION['username'] = $username;
             } else if ($username == "") {
                 $this->_f3->set('errors["username"]', "Username cannot be blank");
@@ -133,20 +135,28 @@ class Controller
             } else {
                 $this->_f3->set('errors["username"]', "This username has already been chosen please choose another.");
             }
+
             //save password to session
 
-            if ($validator->validPassword($email)) {
-                $_SESSION['email'] = $_POST['email'];
-            } else if ($email == "") {
-                $this->_f3->set('errors["email"]', "Email cannot be blank");
+            if ($validator->validPassword($password) && $password == $confirmPass) {
+                $_SESSION['password'] = $password;
+            } else if ($password == "") {
+                $this->_f3->set('errors["password"]', "Password cannot be blank");
+        } else if ($validator->validPassword($password)) {
+            $this->_f3->set('errors["password"]', "Password must be valid");
+        }else if($confirmPass == "") {
+                $this->_f3->set('errors["passCheck"]', "Password confirm your password");
+            } else if($confirmPass != $password) {
+                $this->_f3->set('errors["passCheck"]', "Your password does not match");
             } else {
-                $this->_f3->set('errors["email"]', "Please give a valid email");
+                $this->_f3->set('errors["password"]', "Please give a valid password");
             }
+
 
             if(empty($this->_f3->get('errors'))) {
                 $this->_user = new Users($fname, $lname, $email,$username,$password);
                 $_SESSION['user'] = $this->_user;
-                $datalayer->insertUsers();
+                $database->insertUsers();
                 $this->_f3->reroute('login');
             }
 

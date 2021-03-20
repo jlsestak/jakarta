@@ -43,7 +43,7 @@ class Validate
      */
     function validUserName($username)
     {
-        return !empty($userName) && ctype_alpha($username);
+        return !empty($username) && ctype_alpha($username);
     }
 
     /**
