@@ -6,36 +6,54 @@
         <!--First Name -->
         <div class="form-group">
             <label for="fname">First Name</label>
-            <input type="text" class="form-control" id="fname" name="fname">
+            <input type="text" class="form-control" id="fname" name="fname" value="{{@userFName}}">
+            <check if=" {{ isset(@errors['fname'])}}">
+                {{@errors['fname']}}<br>
+            </check>
         </div>
         <!--Last Name -->
         <div class="form-group">
             <label for="lname">Last Name</label>
-            <input type="text" class="form-control" id="lname" name="lname">
+            <input type="text" class="form-control" id="lname" name="lname" value ="{{@userLName}}">
+            <check if=" {{ isset(@errors['lname'])}}">
+                {{@errors['lname']}}<br>
+            </check>
         </div>
 
         <!--Email -->
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" name="email">
+            <input type="text" class="form-control" id="email" name="email" value ="{{@userEmail}}">
+            <check if=" {{ isset(@errors['email'])}}">
+                {{@errors['email']}}<br>
+            </check>
         </div>
 
         <!--Username -->
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username">
+            <input type="text" class="form-control" id="username" name="username" value ="{{@userUserName}}">
+            <check if=" {{ isset(@errors['username'])}}">
+                {{@errors['username']}}<br>
+            </check>
         </div>
 
         <!--Password-->
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password" value ="{{@userPassword}}">
+            <check if=" {{ isset(@errors['password'])}}">
+                {{@errors['password']}}<br>
+            </check>
         </div>
 
         <!--Confirm Password-->
         <div class="form-group">
             <label for="confirmPass">Confirm Password</label>
             <input type="confirmPass" class="form-control" id="confirmPass" name="confirmPass">
+            <check if=" {{ isset(@errors['passCheck'])}}">
+                {{@errors['passwordCheck']}}<br>
+            </check>
         </div>
         <br>
         <!--Submit Button -->

@@ -39,48 +39,46 @@ class DataLayer
     }
 
     /**
-     * insertMember inserts the members information into the database
+     * insertUsers inserts the members information into the database
      */
-    /*
-    function insertMember()
+
+    function insertUsers()
     {
         //get the member information
-        $member = $_SESSION['memberRank'];
+        $user = $_SESSION['user'];
 
         //Define the query
-        $sql = "INSERT INTO primeusers (fname, lname, email, username, password) 
-	            VALUES (:fname, :lname, :age, :gender , :phone , :email ,:states ,:seeking ,:bio,:premium, :interests)";
+        $sql = "INSERT INTO primeusers (fname, lname, email, username, password)
+	            VALUES (:fname, :lname, :email, :username , :password)";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
-        //check to see if a premiumMember and set the interests and the premiumCheck accordingly
-        if ($_SESSION['premiumMember']) {
-            $interests = $member->getIndoorInterests() . ", " . $member->getOutdoorInterests();
-            $premiumCheck = 1;
-        } else {
-            $interests = "";
-            $premiumCheck = 0;
-        }
 
         //Bind the parameters
-        $statement->bindParam(':fname', $member->getFname(), PDO::PARAM_STR);
-        $statement->bindParam(':lname', $member->getLname(), PDO::PARAM_STR);
-        $statement->bindParam(':age', $member->getAge(), PDO::PARAM_INT);
-        $statement->bindParam(':gender', $member->getGender(), PDO::PARAM_STR);
-        $statement->bindParam(':phone', $member->getPhone(), PDO::PARAM_STR);
-        $statement->bindParam(':email', $member->getEmail(), PDO::PARAM_STR);
-        $statement->bindParam(':states', $member->getState(), PDO::PARAM_STR);
-        $statement->bindParam(':seeking', $member->getSeeking(), PDO::PARAM_STR);
-        $statement->bindParam(':bio', $member->getBio(), PDO::PARAM_STR);
-        $statement->bindParam(':premium', $premiumCheck, PDO::PARAM_INT);
-        $statement->bindParam(':interests', $interests, PDO::PARAM_STR);
+
+        $statement->bindParam(':fname', $user->getFirstName(), PDO::PARAM_STR);
+        $statement->bindParam(':lname', $user->getLastName(), PDO::PARAM_STR);
+        $statement->bindParam(':email', $user->getEmail(), PDO::PARAM_STR);
+        $statement->bindParam(':username', $user->getUserName(), PDO::PARAM_STR);
+        $statement->bindParam(':password', $user->getPassWord(), PDO::PARAM_STR);
+
 
         //Execute
         $statement->execute();
 
     }
-    */
+
+
+    /**
+     * checkUserName checks the database if a username has already been taken
+     * @param $username String
+     * @return boolean
+     */
+    function checkUserName($username){
+
+        return true;
+    }
 
 
     /**
@@ -90,26 +88,27 @@ class DataLayer
     function getProduct($productid)
     {
         //Define the query
-        $sql = "SELECT * FROM product WHERE productid = $productid";
+        $sql = "SELECT * FROM product WHERE productid = :product_id";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
         //Execute
-       // $id = $productid;
-       // $statement->bindParam(':product_id', $id, PDO::PARAM_STR);
+        $id = $productid;
+        $statement->bindParam(':product_id', $id, PDO::PARAM_STR);
 
         $statement->execute();
 
         //Get the results
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-     //   $product = $_SESSION['product'];
-      //  $product = $product->getDescription($result['description']);
-      //  $product= $product->getPrice($result['price']);
-     //   $product = $product->getImage1($result['image1']);
-      //  $product = $product->getImage2($result['image2']);
-      //  $_SESSION['product'] = $product;
-        return "HELLO";
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+     //   $product = new Products;
+      //  $product = $product->setDescription($result['description']);
+      //  $product= $product->setPrice($result['price']);
+       // $product = $product->setImage1($result['image1']);
+       // $product = $product->setImage2($result['image2']);
+       // $_SESSION['product'] = $product;
+        return $result;
+
 
     }
 

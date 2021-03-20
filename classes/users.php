@@ -9,6 +9,23 @@ class Users
     private $_passWord;
 
     /**
+     * Users constructor.
+     * @param $_firstName
+     * @param $_lastName
+     * @param $_email
+     * @param $_userName
+     * @param $_passWord
+     */
+    public function __construct($_firstName, $_lastName, $_email, $_userName, $_passWord)
+    {
+        $this->_firstName = $_firstName;
+        $this->_lastName = $_lastName;
+        $this->_email = $_email;
+        $this->_userName = $_userName;
+        $this->_passWord = $_passWord;
+    }
+
+    /**
      * @return mixed
      */
     public function getFirstName()
