@@ -64,6 +64,32 @@ class Database
         $_SESSION['product'] = $product;
 
     }
+    function insertUsers()
+    {
+        //get the member information
+        $user = $_SESSION['user'];
+
+        //Define the query
+        $sql = "INSERT INTO primeusers (fname, lname, email, username, password)
+	            VALUES (:fname, :lname, :email, :username , :password)";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+
+        //Bind the parameters
+
+        $statement->bindParam(':fname', $user->getFirstName(), PDO::PARAM_STR);
+        $statement->bindParam(':lname', $user->getLastName(), PDO::PARAM_STR);
+        $statement->bindParam(':email', $user->getEmail(), PDO::PARAM_STR);
+        $statement->bindParam(':username', $user->getUserName(), PDO::PARAM_STR);
+        $statement->bindParam(':password', $user->getPassWord(), PDO::PARAM_STR);
+
+
+        //Execute
+        $statement->execute();
+
+    }
 
     function getProducts()
     {
