@@ -79,7 +79,9 @@ class Controller
     {
         global $database;
         global $validation;
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {}
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        }
         $view = new Template();
         echo $view->render('views/login.html');
     }
