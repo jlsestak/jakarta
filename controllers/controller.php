@@ -14,6 +14,7 @@ class Controller
     // Display Home Page
     function home()
     {
+        $_SESSION['page'] = 'home';
         $view = new Template();
         echo $view->render('views/home.html');
     }
@@ -21,6 +22,7 @@ class Controller
     // Display Cat Page
     function cat()
     {
+        $_SESSION['page'] = 'cat';
         $view = new Template();
         echo $view->render('views/cat.html');
     }
@@ -28,6 +30,7 @@ class Controller
     // Display Dog Page
     function dog()
     {
+        $_SESSION['page'] = 'dog';
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $dogToy = $_POST['dogtoy'];
@@ -46,6 +49,7 @@ class Controller
     // Display Product Page
     function product()
     {
+        $_SESSION['page'] = 'product';
        echo "<pre>";
        var_dump($_SESSION);
        echo "</pre>";
@@ -63,6 +67,7 @@ class Controller
     // Display About Page
     function about()
     {
+        $_SESSION['page'] = 'about';
         $view = new Template();
         echo $view->render('views/about.html');
     }
@@ -70,6 +75,7 @@ class Controller
     // Display Contact Page
     function contact()
     {
+        $_SESSION['page'] = 'contact';
         $view = new Template();
         echo $view->render('views/contact.html');
     }
@@ -80,19 +86,26 @@ class Controller
         global $database;
         global $validator;
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            if($database->checkCredentials($username, $password)) {
-
+            $username = $_POST['usernames'];
+            $password = $_POST['passwords'];
+            if($database->checkCredentials($username, $password) && $username != "") {
+                if(isset($_SESSION['page'])) {
+                    $this->_f3->reroute($_SESSION['page']);
+                } else {
+                    $this->_f3->reroute('/home');
+                }
             }
             else if($username == "") {
-                $this->_f3->set('errors["usernameCheck"]', "Please login with your username");
+                $this->_f3->set('errors["usernameCheck"]', "Please put in your username");
             }
-            else if(!$validator->checkUserInUse($username)) {
-                $this->_f3->set('errors["fname"]', "This username does not exist");
+            else if($password == "") {
+                $this->_f3->set('errors["passNameCheck"]', "Please put in your password");
+            }
+            else if($validator->checkUserInUse($username)) {
+                $this->_f3->set('errors["usernameCheck"]', "This username does not exist");
             }
             else {
-
+                $this->_f3->set('errors["passNameCheck"]', "Please put in a correct user and password");
             }
         }
         $view = new Template();

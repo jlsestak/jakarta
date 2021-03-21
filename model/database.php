@@ -134,8 +134,8 @@ class Database
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         if($username == $result['username'] && $password ==$result['password']) {
-            $user = new Users($result['fname'],$result['lname'],$result['email'],$result['username'],$result['password']);
-            $_SESSION['user'] = $user;
+            $currentUser = new Users($result['fname'],$result['lname'],$result['email'],$result['username'],$result['password']);
+            $_SESSION['currentUser'] = $currentUser;
             return true;
         }
         return false;
