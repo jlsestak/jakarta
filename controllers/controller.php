@@ -18,7 +18,7 @@ class Controller
     function __construct($f3)
     {
         $this->_f3 = $f3;
-        $this->_user = new Users("","","","","");
+        $this->_user = new Users("", "", "", "", "");
     }
 
     /**
@@ -29,6 +29,27 @@ class Controller
         //render home view
         $view = new Template();
         echo $view->render('views/home.html');
+    }
+
+    /**
+     * Displays dog page and saves dog toy user picks
+     */
+    function dog()
+    {
+        //stores the page for the user
+        $_SESSION['page'] = 'dog';
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $dogToy = $_POST['dogtoy'];
+
+            if (isset($dogToy)) {
+                $_SESSION['productSession'] = $dogToy;
+                $this->_f3->reroute('/product');
+            }
+        }
+
+        $view = new Template();
+        echo $view->render('views/dog.html');
     }
 
     /**
@@ -45,52 +66,23 @@ class Controller
     }
 
     /**
-     * Displays dog page and saves dog toy user picks
-     */
-    function dog()
-    {
-<<<<<<< HEAD
-        //stores the page for the user
-        $_SESSION['page'] = 'dog';
-
-        //checks if the
-=======
->>>>>>> 67aea9275a6f92b823710566812b740f4c619da6
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            $dogToy = $_POST['dogtoy'];
-
-            if(isset($dogToy))
-            {
-                $_SESSION['productSession'] = $dogToy;
-                $this->_f3->reroute('/product');
-            }
-        }
-
-        $view = new Template();
-        echo $view->render('views/dog.html');
-    }
-
-    /**
      * Displays the product the user has picked from
      * grabbing the information from the product from the database
      * and displaying it on the page.
      */
     function product()
     {
-       echo "<pre>";
-       var_dump($_SESSION);
-       echo "</pre>";
+        echo "<pre>";
+        var_dump($_SESSION);
+        echo "</pre>";
 
         global $database;
         $database->getProduct($_SESSION['productSession']);
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $quantity = $_POST['quantity'];
 
-            if(isset($quantity))
-            {
+            if (isset($quantity)) {
                 $_SESSION['quantity'] = $quantity;
                 $this->_f3->reroute('/cart');
             }
@@ -103,11 +95,6 @@ class Controller
         //session_destroy();
     }
 
-<<<<<<< HEAD
-    /**
-     * routes to the about page
-     */
-=======
     // Display Cart Page
     function cart()
     {
@@ -119,8 +106,6 @@ class Controller
         echo $view->render('views/cart.html');
     }
 
-    // Display About Page
->>>>>>> 67aea9275a6f92b823710566812b740f4c619da6
     function about()
     {
         $_SESSION['page'] = 'about';
@@ -148,26 +133,22 @@ class Controller
     {
         global $database;
         global $validator;
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['usernames'];
             $password = $_POST['passwords'];
-            if($database->checkCredentials($username, $password) && $username != "") {
-                if(isset($_SESSION['page'])) {
+            if ($database->checkCredentials($username, $password) && $username != "") {
+                if (isset($_SESSION['page'])) {
                     $this->_f3->reroute($_SESSION['page']);
                 } else {
                     $this->_f3->reroute('../jakarta');
                 }
-            }
-            else if($username == "") {
+            } else if ($username == "") {
                 $this->_f3->set('errors["usernameCheck"]', "Please put in your username");
-            }
-            else if($password == "") {
+            } else if ($password == "") {
                 $this->_f3->set('errors["passNameCheck"]', "Please put in your password");
-            }
-            else if($validator->checkUserInUse($username)) {
+            } else if ($validator->checkUserInUse($username)) {
                 $this->_f3->set('errors["usernameCheck"]', "This username does not exist");
-            }
-            else {
+            } else {
                 $this->_f3->set('errors["passNameCheck"]', "Please put in a correct user and password");
             }
         }
@@ -178,7 +159,8 @@ class Controller
     /**
      * logout logs the user out
      */
-    function logout() {
+    function logout()
+    {
         session_destroy();
         $_SESSION = array();
         $this->_f3->reroute('../jakarta');
@@ -194,7 +176,7 @@ class Controller
         global $database;
         global $datalayer;
         global $validator;
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $fname = trim($_POST['fname']);
             $lname = trim($_POST['lname']);
             $email = $_POST['email'];
@@ -204,23 +186,19 @@ class Controller
             //Save first name to session if valid
             if ($validator->validName($fname)) {
                 $_SESSION['fname'] = $_POST['fname'];
-            }
-            else if($fname ==""){
+            } else if ($fname == "") {
                 $this->_f3->set('errors["fname"]', "First Name cannot be blank");
-            }
-            else {
+            } else {
                 $this->_f3->set('errors["fname"]', "First Name must contain only alphabetic characters");
             }
 
             //Save last name to session if valid
             if ($validator->validName($lname)) {
                 $_SESSION['lname'] = $_POST['lname'];
-            }
-            else if($lname == ""){
+            } else if ($lname == "") {
 
                 $this->_f3->set('errors["lname"]', "Last Name cannot be blank");
-            }
-            else {
+            } else {
                 $this->_f3->set('errors["lname"]', "Last name must contain only alphabetic characters");
             }
 
@@ -236,7 +214,7 @@ class Controller
                 $_SESSION['username'] = $username;
             } else if ($username == "") {
                 $this->_f3->set('errors["username"]', "Username cannot be blank");
-            } else if(!$validator->validUserName($username)) {
+            } else if (!$validator->validUserName($username)) {
                 $this->_f3->set('errors["username"]', "Please enter a valid username.");
             } else {
                 $this->_f3->set('errors["username"]', "This username has already been chosen please choose another.");
@@ -250,24 +228,21 @@ class Controller
                 $this->_f3->set('errors["password"]', "Password cannot be blank");
             } else if ($validator->validPassword($password)) {
                 $this->_f3->set('errors["password"]', "Password must be valid");
-            }else if($confirmPass == "") {
+            } else if ($confirmPass == "") {
                 $this->_f3->set('errors["passCheck"]', "Password confirm your password");
-            } else if($confirmPass != $password) {
+            } else if ($confirmPass != $password) {
                 $this->_f3->set('errors["passCheck"]', "Your password does not match");
             } else {
                 $this->_f3->set('errors["password"]', "Please give a valid password");
             }
 
 
-            if(empty($this->_f3->get('errors'))) {
-                $this->_user = new Users($fname, $lname, $email,$username,$password);
+            if (empty($this->_f3->get('errors'))) {
+                $this->_user = new Users($fname, $lname, $email, $username, $password);
                 $_SESSION['user'] = $this->_user;
                 $database->insertUsers();
                 $this->_f3->reroute('login');
             }
-
-
-
         }
 
         $this->_f3->set('userFName', isset($fname) ? $fname : "");
@@ -279,18 +254,4 @@ class Controller
         $view = new Template();
         echo $view->render('views/register.html');
     }
-
-<<<<<<< HEAD
-
-    /**
-     *routes user to the cart page
-     */
-    function cart()
-    {
-        $view = new Template();
-        echo $view->render('views/cart.html');
-    }
-
-=======
->>>>>>> 67aea9275a6f92b823710566812b740f4c619da6
 }
