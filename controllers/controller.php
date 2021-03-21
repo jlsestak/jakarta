@@ -30,7 +30,6 @@ class Controller
     // Display Dog Page
     function dog()
     {
-        $_SESSION['page'] = 'dog';
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $dogToy = $_POST['dogtoy'];
@@ -49,7 +48,6 @@ class Controller
     // Display Product Page
     function product()
     {
-        $_SESSION['page'] = 'product';
        echo "<pre>";
        var_dump($_SESSION);
        echo "</pre>";
@@ -57,11 +55,33 @@ class Controller
         global $database;
         $database->getProduct($_SESSION['productSession']);
 
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $quantity = $_POST['quantity'];
+
+            if(isset($quantity))
+            {
+                $_SESSION['quantity'] = $quantity;
+                $this->_f3->reroute('/cart');
+            }
+        }
+
         //Display a view
         $view = new Template();
         echo $view->render('views/product.html');
 
         //session_destroy();
+    }
+
+    // Display Cart Page
+    function cart()
+    {
+        echo "<pre>";
+        var_dump($_SESSION);
+        echo "</pre>";
+
+        $view = new Template();
+        echo $view->render('views/cart.html');
     }
 
     // Display About Page
@@ -203,14 +223,6 @@ class Controller
 
         $view = new Template();
         echo $view->render('views/register.html');
-    }
-
-
-    // Display Cart Page
-    function cart()
-    {
-        $view = new Template();
-        echo $view->render('views/cart.html');
     }
 
 }

@@ -39,26 +39,25 @@
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-10">
+            <form method="post" action="#">
+                <h1 class="display-3">{{ @SESSION.product->getProductname() }}</h1>
 
-            <h1 class="display-3">{{ @SESSION.product->getProductname() }}</h1>
+                <p class="h3">price</p>
+                <p>{{ @SESSION.product->getPrice() }}</p>
 
-            <p class="h3">price</p>
-            <p>{{ @SESSION.product->getPrice() }}</p>
+                <p class="h3">quantity</p>
+                <input type="number" min="1" max="10" class="form-control" name="quantity">
 
-            <p class="h3">quantity</p>
-            <input type="number" min="1" max="10" value="1" class="form-control">
+                <div class="m-2 p-2 d-grid gap-2">
+                    <input type="submit" class="btn btn-secondary btn-lg" value="add to cart">
+                </div>
 
-            <div class="m-2 p-2 d-grid gap-2">
-                <input type="submit" class="btn btn-secondary btn-lg" value="add to cart">
-            </div>
+                <p class="h3">product details</p>
 
-            <p class="h3">product details</p>
-
-            <p class="lh-lg">{{ @SESSION.product->getDescription() }}</p>
-
+                <p class="lh-lg">{{ @SESSION.product->getDescription() }}</p>
+            </form>
         </div>
     </div>
-
 
 </div>
 
