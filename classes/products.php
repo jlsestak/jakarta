@@ -7,6 +7,23 @@ class Products
     private $_price;
     private $_image1;
     private $_image2;
+    private $_productname;
+
+    /**
+     * @return mixed
+     */
+    public function getProductname()
+    {
+        return $this->_productname;
+    }
+
+    /**
+     * @param mixed $productname
+     */
+    public function setProductname($productname)
+    {
+        $this->_productname = $productname;
+    }
 
     /**
      * Products constructor.

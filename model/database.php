@@ -61,6 +61,7 @@ class Database
         $product->setPrice($result['price']);
         $product->setImage1($result['image1']);
         $product->setImage2($result['image2']);
+        $product->setProductname($result['productname']);
         $_SESSION['product'] = $product;
 
     }
