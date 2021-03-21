@@ -119,6 +119,27 @@ class Database
         }
         return true;
     }
+
+    function checkCredentials($username, $password) {
+        $sql = "SELECT * FROM primeusers WHERE username = :username";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //Execute
+        $id = $username;
+        $statement->bindParam(':username', $id, PDO::PARAM_STR);
+
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        if($username == $result['username'] && $password ==$result['password']) {
+            $user = new Users($result['fname'],$result['lname'],$result['email'],$result['username'],$result['password']);
+            $_SESSION['user'] = $user;
+            return true;
+        }
+        return false;
+
+    }
 }
 
 

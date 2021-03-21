@@ -78,9 +78,22 @@ class Controller
     function login()
     {
         global $database;
-        global $validation;
+        global $validator;
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            if($database->checkCredentials($username, $password)) {
 
+            }
+            else if($username == "") {
+                $this->_f3->set('errors["usernameCheck"]', "Please login with your username");
+            }
+            else if(!$validator->checkUserInUse($username)) {
+                $this->_f3->set('errors["fname"]', "This username does not exist");
+            }
+            else {
+
+            }
         }
         $view = new Template();
         echo $view->render('views/login.html');

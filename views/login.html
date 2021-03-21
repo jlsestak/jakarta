@@ -5,14 +5,21 @@
 
     <!--Username -->
     <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username">
+        <label for="usernames">Username</label>
+        <input type="text" class="form-control" id="usernames" name="usernames">
+        <check if=" {{ isset(@errors['usernameCheck'])}}">
+            {{@errors['usernameCheck']}}<br>
+        </check>
     </div>
+
 
     <!--Password-->
     <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password">
+        <label for="passwords">Password</label>
+        <input type="passwords" class="form-control" id="passwords" name="passwords">
+        <check if=" {{ isset(@errors['passNameCheck'])}}">
+            {{@errors['passNameCheck']}}<br>
+        </check>
     </div> <br>
 
     <!--Submit Button -->
