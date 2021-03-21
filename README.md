@@ -1,5 +1,9 @@
 # Playful Pets Online Store
 
+## Project Description
+This e-commerce app (Playful Pets) will help customers buy pet accessories, toys for their pets.
+You can view the project [here!](https://safal.greenriverdev.com/sdev328/jakarta/)
+
 ## Project Requirements
 
 * Separates all database/business logic using the MVC pattern.
@@ -50,11 +54,6 @@
 * Your submission shows adequate effort for a final project in a full-stack web development course.
   
   Checked.
-
-
-## Project Description
-This e-commerce app (Playful Pets) will help customers buy pet accessories, toys for their pets.
-You can view the project [here!](https://safal.greenriverdev.com/sdev328/jakarta/)
 
 ## UML Class Diagram
 ![UML Diagram](images/product/PetStoreUML.jpg)
