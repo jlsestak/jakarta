@@ -1,36 +1,58 @@
 <?php
 
+/**
+ * @author Safal Adhikari and Jessica Sestak
+ * @Version 1.0
+ * model/validate.php
+ * Routes the user across the website
+ **/
 class Controller
 {
     private $_f3;
     private $_user;
 
+    /**
+     * Controller constructor.
+     * @param $f3
+     */
     function __construct($f3)
     {
         $this->_f3 = $f3;
         $this->_user = new Users("","","","","");
     }
 
-    // Display Home Page
+    /**
+     * Display home page
+     */
     function home()
     {
-        $_SESSION['page'] = 'home';
+        //render home view
         $view = new Template();
         echo $view->render('views/home.html');
     }
 
-    // Display Cat Page
+    /**
+     * Displays cat page and saves cat toy user picks
+     */
     function cat()
     {
+        //stores the page for the user
         $_SESSION['page'] = 'cat';
+
+        //renders cat view
         $view = new Template();
         echo $view->render('views/cat.html');
     }
 
-    // Display Dog Page
+    /**
+     * Displays dog page and saves dog toy user picks
+     */
     function dog()
     {
+        //stores the page for the user
         $_SESSION['page'] = 'dog';
+
+        //checks if the
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $dogToy = $_POST['dogtoy'];
@@ -46,7 +68,11 @@ class Controller
         echo $view->render('views/dog.html');
     }
 
-    // Display Product Page
+    /**
+     * Displays the product the user has picked from
+     * grabbing the information from the product from the database
+     * and displaying it on the page.
+     */
     function product()
     {
         $_SESSION['page'] = 'product';
@@ -64,7 +90,9 @@ class Controller
         //session_destroy();
     }
 
-    // Display About Page
+    /**
+     * routes to the about page
+     */
     function about()
     {
         $_SESSION['page'] = 'about';
@@ -72,7 +100,9 @@ class Controller
         echo $view->render('views/about.html');
     }
 
-    // Display Contact Page
+    /**
+     * routes to the contact page
+     */
     function contact()
     {
         $_SESSION['page'] = 'contact';
@@ -80,7 +110,12 @@ class Controller
         echo $view->render('views/contact.html');
     }
 
-    // Display Login Page
+    /**
+     * routes to the login page and stores
+     * the grabs the user's information from the database to
+     * store to a session then routes the user to their previous page or
+     * the home page
+     */
     function login()
     {
         global $database;
@@ -92,7 +127,7 @@ class Controller
                 if(isset($_SESSION['page'])) {
                     $this->_f3->reroute($_SESSION['page']);
                 } else {
-                    $this->_f3->reroute('/home');
+                    $this->_f3->reroute('../jakarta');
                 }
             }
             else if($username == "") {
@@ -112,7 +147,20 @@ class Controller
         echo $view->render('views/login.html');
     }
 
-    // Display Registration Page
+    /**
+     * logout logs the user out
+     */
+    function logout() {
+        session_destroy();
+        $_SESSION = array();
+        $this->_f3->reroute('../jakarta');
+
+    }
+
+    /**
+     * register creates a new user storing their information
+     * to a database and then re-routing them to the login page
+     */
     function register()
     {
         global $database;
@@ -148,7 +196,6 @@ class Controller
                 $this->_f3->set('errors["lname"]', "Last name must contain only alphabetic characters");
             }
 
-            //save email to session
             if ($validator->validEmail($email)) {
                 $_SESSION['email'] = $email;
             } else if ($email == "") {
@@ -206,7 +253,9 @@ class Controller
     }
 
 
-    // Display Cart Page
+    /**
+     *routes user to the cart page
+     */
     function cart()
     {
         $view = new Template();

@@ -64,6 +64,11 @@ $f3->route('GET|POST /login', function ($f3){
     global $controller;
     $controller->login();
 });
+// Define a logout page route
+$f3->route('GET /logout', function ($f3){
+    global $controller;
+    $controller->logout();
+});
 
 // Define a registration route
 $f3->route('GET|POST /register', function ($f3){
