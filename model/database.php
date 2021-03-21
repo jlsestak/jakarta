@@ -102,6 +102,23 @@ class Database
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+    function getUserPurchase() {
+        //define the query
+        $sql = "SELECT primeusers.fname, primeusers.lname, primeusers.email, product.productname
+        FROM primeusers
+        JOIN productprime ON primeusers.primeuserid = productprime.primeuserid 
+        JOIN product ON product.productid = productprime.productid";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->execute();
+
+        //Get the results
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+
+    }
 
     function checkUserName($username){
         $sql = "SELECT * FROM primeusers WHERE username = :username";

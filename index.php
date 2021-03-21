@@ -88,5 +88,11 @@ $f3->route('GET /summary', function ($f3){
     $controller->summary();
 });
 
+// Define a admin route
+$f3->route('GET /admin', function ($f3){
+    global $controller;
+    $controller->admin();
+});
+
 //Run fat free
 $f3->run();

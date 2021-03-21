@@ -271,4 +271,14 @@ class Controller
         $view = new Template();
         echo $view->render('views/register.html');
     }
+
+    function admin() {
+        global $database;
+        $purchases = $database->getUserPurchase();
+        $this->_f3->set('purchases', $purchases);
+        //Display a view
+        $view = new Template();
+        echo $view->render('views/admin.html');
+    }
+
 }
