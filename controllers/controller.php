@@ -107,11 +107,15 @@ class Controller
     // Display Cart Page
     function cart()
     {
+        global $database;
 //        echo "<pre>";
 //        var_dump($_SESSION);
 //        echo "</pre>";
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if($_SESSION['currentUser']) {
+                $database->storePurchases($_SESSION['productSession']);
+            }
                 $this->_f3->reroute('/summary');
         }
 

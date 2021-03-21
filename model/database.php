@@ -151,11 +151,29 @@ class Database
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         if($username == $result['username'] && $password ==$result['password']) {
-            $currentUser = new Users($result['fname'],$result['lname'],$result['email'],$result['username'],$result['password']);
+            $currentUser = new CurrentUser($result['fname'],$result['fname'],$result['email'],$result['username'],
+                $result['password']);
+            $currentUser->setMemberid($result['primeuserid']);
             $_SESSION['currentUser'] = $currentUser;
             return true;
         }
         return false;
+
+
+    }
+    function storePurchases( $productid) {
+        $sql = "INSERT INTO productprime (productid, primeuserid)
+	            VALUES (:productid, :userid)";
+
+        $user = $_SESSION['currentUser'];
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->bindParam(':userid', $user->getMemberId(), PDO::PARAM_INT);
+        $statement->bindParam(':productid', $productid, PDO::PARAM_INT);
+
+        //Execute
+        $statement->execute();
 
     }
 }
