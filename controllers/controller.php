@@ -60,6 +60,15 @@ class Controller
         //stores the page for the user
         $_SESSION['page'] = 'cat';
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $catToy = $_POST['cattoy'];
+
+            if (isset($catToy)) {
+                $_SESSION['productSession'] = $catToy;
+                $this->_f3->reroute('/product');
+            }
+        }
+
         //renders cat view
         $view = new Template();
         echo $view->render('views/cat.html');
@@ -102,8 +111,18 @@ class Controller
         var_dump($_SESSION);
         echo "</pre>";
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $this->_f3->reroute('/summary');
+        }
+
         $view = new Template();
         echo $view->render('views/cart.html');
+    }
+
+    function summary()
+    {
+        $view = new Template();
+        echo $view->render('views/summary.html');
     }
 
     function about()
@@ -254,4 +273,5 @@ class Controller
         $view = new Template();
         echo $view->render('views/register.html');
     }
+
 }

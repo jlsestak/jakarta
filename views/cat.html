@@ -19,19 +19,32 @@
 
     <p class="text-center h1">Shop the collection</p>
 
-    <div class="row">
+    <form method="post" action="#">
+        <div class="row">
 
-        <div class="col-lg-6 col-md-6 col-sm-10">
-            <img src="images/product/catnip.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img"  alt="Water Fish">
-            <p class="fs-2 text-center" style="margin-left: 15px;">Catnip Buddies</p>
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <label>
+                    <img src="images/product/catnip.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img"  alt="Water Fish">
+                    <p class="fs-2 text-center" style="margin-left: 15px;">Catnip Buddies</p>
+                    <input type="radio" name="cattoy" value="3">
+                </label>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <label>
+                <img src="images/product/ballroller.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Fish ball">
+                    <p class="fs-2 text-center">Tower of Tracks</p>
+                    <input type="radio" name="cattoy" value="4">
+                </label>
+            </div>
         </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-10">
-            <img src="images/product/ballroller.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Fish ball">
-            <p class="fs-2 text-center">Tower of Tracks</p>
+        <div class="m-2 p-2">
+            <input type="submit" class="btn btn-secondary btn-lg" value="Next >">
         </div>
 
-    </div>
+    </form>
+
 </div>
 
 <include href="views/footer.html"></include>

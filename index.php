@@ -82,5 +82,11 @@ $f3->route('GET|POST /cart', function ($f3){
     $controller->cart();
 });
 
+// Define a summary route
+$f3->route('GET /summary', function ($f3){
+    global $controller;
+    $controller->summary();
+});
+
 //Run fat free
 $f3->run();
