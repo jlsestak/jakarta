@@ -1,5 +1,29 @@
 <?php
+/*
+     CREATE TABLE primeusers (
+        userid int(5) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        fname varchar(20) NOT NULL,
+        lname varchar(20) NOT NULL,
+        email varchar(30) NOT NULL,
+        username varchar(20) NOT NULL,
+        password varchar(40) NOT NULL
+    );
 
+    INSERT INTO primeusers (fname, lname, email, username, password) VALUES
+        ('Joe', 'Shmo', 'jshmo@gmail.com', 'jshmo', sha1('shmo123')),
+        ('John', 'Doe', 'johndoe@gmail.com', 'jdoe', sha1('doe456'));
+
+ */
+/*
+CREATE TABLE product (
+    productid varchar(20) NOT NULL PRIMARY KEY,
+        description varchar(100) NOT NULL,
+        price decimal(6,2) NOT NULL,
+        image1 varchar(30) NOT NULL,
+        image2 varchar(30) NOT NULL
+    );
+
+*/
 class DataLayer
 {
     /**

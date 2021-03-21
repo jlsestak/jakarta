@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @author Safal Adhikari and Jessica Sestak
+ * @Version 1.0
+ * classes/users.php
+ * Users class stores the user information when they register
+ **/
 class Users
 {
+    //fields
     private $_firstName;
     private $_lastName;
     private $_email;
@@ -10,11 +17,11 @@ class Users
 
     /**
      * Users constructor.
-     * @param $_firstName
-     * @param $_lastName
-     * @param $_email
-     * @param $_userName
-     * @param $_passWord
+     * @param $_firstName String
+     * @param $_lastName String
+     * @param $_email String
+     * @param $_userName String
+     * @param $_passWord String
      */
     public function __construct($_firstName, $_lastName, $_email, $_userName, $_passWord)
     {
@@ -26,7 +33,8 @@ class Users
     }
 
     /**
-     * @return mixed
+     * getFirstName gets the first name of the user
+     * @return String
      */
     public function getFirstName()
     {
@@ -34,7 +42,8 @@ class Users
     }
 
     /**
-     * @param mixed $firstName
+     * setFirstName sets the first name of the user
+     * @param String $firstName
      */
     public function setFirstName($firstName)
     {
@@ -42,7 +51,8 @@ class Users
     }
 
     /**
-     * @return mixed
+     * getLastName gets the last name of the user
+     * @return String
      */
     public function getLastName()
     {
@@ -50,7 +60,8 @@ class Users
     }
 
     /**
-     * @param mixed $lastName
+     * setLastName sets the last name of the user
+     * @param String $lastName
      */
     public function setLastName($lastName)
     {
@@ -58,7 +69,8 @@ class Users
     }
 
     /**
-     * @return mixed
+     * getEmail gets the email of the user
+     * @return String
      */
     public function getEmail()
     {
@@ -66,7 +78,8 @@ class Users
     }
 
     /**
-     * @param mixed $email
+     * setEmail sets the email of the user
+     * @param String $email
      */
     public function setEmail($email)
     {
@@ -74,7 +87,8 @@ class Users
     }
 
     /**
-     * @return mixed
+     * getUserName gets the username from the user
+     * @return String
      */
     public function getUserName()
     {
@@ -82,7 +96,8 @@ class Users
     }
 
     /**
-     * @param mixed $userName
+     * setUserName sets the username of the user
+     * @param String $userName
      */
     public function setUserName($userName)
     {
@@ -90,7 +105,8 @@ class Users
     }
 
     /**
-     * @return mixed
+     * getPassWord gets the password of the user
+     * @return String
      */
     public function getPassWord()
     {
@@ -98,7 +114,8 @@ class Users
     }
 
     /**
-     * @param mixed $passWord
+     * setPassWord sets the password of the user
+     * @param String $passWord
      */
     public function setPassWord($passWord)
     {

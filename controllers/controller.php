@@ -8,6 +8,7 @@
  **/
 class Controller
 {
+    //fields
     private $_f3;
     private $_user;
 
@@ -39,15 +40,22 @@ class Controller
         //stores the page for the user
         $_SESSION['page'] = 'dog';
 
+        //if posted save the toy to a variable
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $dogToy = $_POST['dogtoy'];
 
+            //check to see if a dog toy was selected
             if (isset($dogToy)) {
+
+                //save the dog toy to a session
                 $_SESSION['productSession'] = $dogToy;
+
+                //reroute to the product page
                 $this->_f3->reroute('/product');
             }
         }
 
+        //render the dog view
         $view = new Template();
         echo $view->render('views/dog.html');
     }
@@ -60,9 +68,11 @@ class Controller
         //stores the page for the user
         $_SESSION['page'] = 'cat';
 
+        //if posted save the toy to a variable
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $catToy = $_POST['cattoy'];
 
+            //save the cat toy to a session and reroute to product
             if (isset($catToy)) {
                 $_SESSION['productSession'] = $catToy;
                 $this->_f3->reroute('/product');
@@ -81,70 +91,60 @@ class Controller
      */
     function product()
     {
-//        echo "<pre>";
-//        var_dump($_SESSION);
-//        echo "</pre>";
-
         global $database;
+
+        //get the product information from the database
         $database->getProduct($_SESSION['productSession']);
 
+        //if submitted save the quantity to a variable
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $quantity = $_POST['quantity'];
 
+            //if quantity is set save to a session and reroute to the cart page
             if (isset($quantity)) {
                 $_SESSION['quantity'] = $quantity;
                 $this->_f3->reroute('/cart');
             }
         }
 
-        //Display a view
+        //Display product view
         $view = new Template();
         echo $view->render('views/product.html');
 
-        //session_destroy();
     }
 
-    // Display Cart Page
+    /**
+     * displays the cart page and saves the user's purchase in
+     * the database
+     */
     function cart()
     {
         global $database;
-//        echo "<pre>";
-//        var_dump($_SESSION);
-//        echo "</pre>";
 
+        //if submitted check to see if the user was logged in and save their purchases to the database
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if($_SESSION['currentUser']) {
                 $database->storePurchases($_SESSION['productSession']);
             }
+                //reroute to summary page
                 $this->_f3->reroute('/summary');
         }
 
+        //render the cart view
         $view = new Template();
         echo $view->render('views/cart.html');
     }
 
+    /**
+     * summary page displays the user's purchase
+     */
     function summary()
     {
+        //render the summary view
         $view = new Template();
         echo $view->render('views/summary.html');
     }
 
-    function about()
-    {
-        $_SESSION['page'] = 'about';
-        $view = new Template();
-        echo $view->render('views/about.html');
-    }
-
-    /**
-     * routes to the contact page
-     */
-    function contact()
-    {
-        $_SESSION['page'] = 'contact';
-        $view = new Template();
-        echo $view->render('views/contact.html');
-    }
 
     /**
      * routes to the login page and stores
@@ -156,31 +156,47 @@ class Controller
     {
         global $database;
         global $validator;
+
+        //if submitted validate the username and password
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['usernames'];
             $password = $_POST['passwords'];
+
+            //check the credentials checks that username and password are in the database
             if ($database->checkCredentials($username, $password) && $username != "") {
+
+                //reroutes to the appropriate page if logged in
                 if (isset($_SESSION['page'])) {
                     $this->_f3->reroute($_SESSION['page']);
                 } else {
                     $this->_f3->reroute('../jakarta');
                 }
-            } else if ($username == "") {
+            }
+            //checks if the username is blank
+            else if ($username == "") {
                 $this->_f3->set('errors["usernameCheck"]', "Please put in your username");
-            } else if ($password == "") {
+            }
+            //checks if the password is blank
+            else if ($password == "") {
                 $this->_f3->set('errors["passNameCheck"]', "Please put in your password");
-            } else if ($validator->checkUserInUse($username)) {
+            }
+            //checks if the username is not in the database
+            else if ($validator->checkUserInUse($username)) {
                 $this->_f3->set('errors["usernameCheck"]', "This username does not exist");
-            } else {
-                $this->_f3->set('errors["passNameCheck"]', "Please put in a correct user and password");
+            }
+            //username and/or password is invalid
+            else {
+                $this->_f3->set('errors["passNameCheck"]', "Please put in a correct username and password");
             }
         }
+
+        //renders login view
         $view = new Template();
         echo $view->render('views/login.html');
     }
 
     /**
-     * logout logs the user out
+     * logout logs the user out and re-routes to home page
      */
     function logout()
     {
@@ -198,66 +214,100 @@ class Controller
         global $database;
         global $datalayer;
         global $validator;
+
+        //if posted validate the submission before storing in the database and re-routing
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            //save submissions
             $fname = trim($_POST['fname']);
             $lname = trim($_POST['lname']);
             $email = $_POST['email'];
             $username = $_POST['username'];
             $password = $_POST['password'];
             $confirmPass = $_POST['confirmPass'];
-            //Save first name to session if valid
+
+            //save first name to a session if valid
             if ($validator->validName($fname)) {
                 $_SESSION['fname'] = $_POST['fname'];
-            } else if ($fname == "") {
+            }
+            //check if firstname is blank
+            else if ($fname == "") {
                 $this->_f3->set('errors["fname"]', "First Name cannot be blank");
-            } else {
+            }
+            //checks if firstname is invalid
+            else {
                 $this->_f3->set('errors["fname"]', "First Name must contain only alphabetic characters");
             }
 
             //Save last name to session if valid
             if ($validator->validName($lname)) {
                 $_SESSION['lname'] = $_POST['lname'];
-            } else if ($lname == "") {
-
+            }
+            //checks if last name is blank
+            else if ($lname == "") {
                 $this->_f3->set('errors["lname"]', "Last Name cannot be blank");
-            } else {
+            }
+            //checks if last name is valid
+            else {
                 $this->_f3->set('errors["lname"]', "Last name must contain only alphabetic characters");
             }
 
+            //save email to a session if valid
             if ($validator->validEmail($email)) {
                 $_SESSION['email'] = $email;
-            } else if ($email == "") {
+            }
+            //checks if email is blank
+            else if ($email == "") {
                 $this->_f3->set('errors["email"]', "Email cannot be blank");
-            } else {
+            }
+            //checks if email is valid
+            else {
                 $this->_f3->set('errors["email"]', "Please give a valid email");
             }
-            //save username to session
+
+            //save username to session if valid
             if ($validator->validUserName($username) && $validator->checkUserInUse($username)) {
                 $_SESSION['username'] = $username;
-            } else if ($username == "") {
+            }
+            //checks if username is blank
+            else if ($username == "") {
                 $this->_f3->set('errors["username"]', "Username cannot be blank");
-            } else if (!$validator->validUserName($username)) {
+            }
+            //check if username already exists in the database
+            else if (!$validator->validUserName($username)) {
                 $this->_f3->set('errors["username"]', "Please enter a valid username.");
-            } else {
+            }
+            //checks if username is valid
+            else {
                 $this->_f3->set('errors["username"]', "This username has already been chosen please choose another.");
             }
 
-            //save password to session
-
+            //save password to session if valid
             if ($validator->validPassword($password) && $password == $confirmPass) {
                 $_SESSION['password'] = $password;
-            } else if ($password == "") {
+            }
+            //checks if password is blank
+            else if ($password == "") {
                 $this->_f3->set('errors["password"]', "Password cannot be blank");
-            } else if ($validator->validPassword($password)) {
+            }
+            //checks if password is valid
+            else if (!$validator->validPassword($password)) {
                 $this->_f3->set('errors["password"]', "Password must be valid");
-            } else if ($confirmPass == "") {
+            }
+            //checks if the confirm password is blank
+            else if ($confirmPass == "") {
                 $this->_f3->set('errors["passCheck"]', "Password confirm your password");
-            } else if ($confirmPass != $password) {
+            }
+           //checks if password is the same as confirm password
+            else if ($confirmPass != $password) {
                 $this->_f3->set('errors["passCheck"]', "Your password does not match");
-            } else {
+            }
+            //checks for invalid password
+            else {
                 $this->_f3->set('errors["password"]', "Please give a valid password");
             }
 
+            //if there are no errors store the new users information in the database and reroute to login
             if (empty($this->_f3->get('errors'))) {
                 $this->_user = new Users($fname, $lname, $email, $username, $password);
                 $_SESSION['user'] = $this->_user;
@@ -266,21 +316,30 @@ class Controller
             }
         }
 
+        //make the register form sticky
         $this->_f3->set('userFName', isset($fname) ? $fname : "");
         $this->_f3->set('userLName', isset($lname) ? $lname : "");
         $this->_f3->set('userEmail', isset($email) ? $email : "");
         $this->_f3->set('userUserName', isset($username) ? $username : "");
         $this->_f3->set('userPassword', isset($password) ? $password : "");
 
+        //render the register view
         $view = new Template();
         echo $view->render('views/register.html');
     }
 
-    function admin() {
+    /**
+     * admin page displays the member's purchase from the database
+     */
+    function admin()
+    {
         global $database;
+
+        //get the purchases from the database
         $purchases = $database->getUserPurchase();
         $this->_f3->set('purchases', $purchases);
-        //Display a view
+
+        //render admin view
         $view = new Template();
         echo $view->render('views/admin.html');
     }

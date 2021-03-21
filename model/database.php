@@ -1,35 +1,20 @@
 <?php
 
-/*
-     CREATE TABLE primeusers (
-        userid int(5) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        fname varchar(20) NOT NULL,
-        lname varchar(20) NOT NULL,
-        email varchar(30) NOT NULL,
-        username varchar(20) NOT NULL,
-        password varchar(40) NOT NULL
-    );
-
-    INSERT INTO primeusers (fname, lname, email, username, password) VALUES
-        ('Joe', 'Shmo', 'jshmo@gmail.com', 'jshmo', sha1('shmo123')),
-        ('John', 'Doe', 'johndoe@gmail.com', 'jdoe', sha1('doe456'));
-
- */
-/*
-CREATE TABLE product (
-    productid varchar(20) NOT NULL PRIMARY KEY,
-        description varchar(100) NOT NULL,
-        price decimal(6,2) NOT NULL,
-        image1 varchar(30) NOT NULL,
-        image2 varchar(30) NOT NULL
-    );
-
-*/
-
+/**
+ * @author Safal Adhikari and Jessica Sestak
+ * @Version 1.0
+ * model/database.php
+ * Contains queries to access the database to store and retrieve user and product information
+ **/
 class Database
 {
+    //fields
     private $_dbh;
 
+    /**
+     * Database constructor.
+     * @param $dbh
+     */
     function __construct($dbh)
     {
         $this->_dbh = $dbh;
@@ -37,7 +22,7 @@ class Database
 
     /**
      * getMember($member_id) gets a single member from the database using their member id
-     * @param $productid
+     * @param $productid int
      */
     function getProduct($productid)
     {
@@ -47,15 +32,17 @@ class Database
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
-        //Execute
+        //bind parameters
         $id = $productid;
         $statement->bindParam(':product_id', $id, PDO::PARAM_INT);
 
+        //Execute
         $statement->execute();
 
         //Get the results
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
+        //Store the product information from the database into the Product class
         $product = new Products();
         $product->setDescription($result['description']);
         $product->setPrice($result['price']);
@@ -63,8 +50,12 @@ class Database
         $product->setImage2($result['image2']);
         $product->setProductname($result['productname']);
         $_SESSION['product'] = $product;
-
     }
+
+    /**
+     * insertUsers inserts the user information from the registration
+     * into the database
+     */
     function insertUsers()
     {
         //get the member information
@@ -77,31 +68,40 @@ class Database
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
-
         //Bind the parameters
-
         $statement->bindParam(':fname', $user->getFirstName(), PDO::PARAM_STR);
         $statement->bindParam(':lname', $user->getLastName(), PDO::PARAM_STR);
         $statement->bindParam(':email', $user->getEmail(), PDO::PARAM_STR);
         $statement->bindParam(':username', $user->getUserName(), PDO::PARAM_STR);
         $statement->bindParam(':password', $user->getPassWord(), PDO::PARAM_STR);
 
-
         //Execute
         $statement->execute();
-
     }
 
+    /**
+     * getProducts get the product information from the database
+     * @return associative array
+     */
     function getProducts()
     {
+        //define the query
         $sql = "SELECT * FROM product";
 
+        //prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
+        //execute the statement
         $statement->execute();
 
+        //return the results
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * getUserPurchases gets the user
+     * @return associative array
+     */
     function getUserPurchase() {
         //define the query
         $sql = "SELECT primeusers.fname, primeusers.lname, primeusers.email, product.productname

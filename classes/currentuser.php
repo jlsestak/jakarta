@@ -1,11 +1,20 @@
 <?php
 
+/**
+ * @author Safal Adhikari and Jessica Sestak
+ * @Version 1.0
+ * classes/currentuser.php
+ * Current user class extends user and stores the member id
+ **/
 class CurrentUser extends Users
 {
+
+    //memberid field
     private $_memberid;
-    
+
     /**
-     * @return mixed
+     * getMemberid gets the member id
+     * @return int
      */
     public function getMemberid()
     {
@@ -13,7 +22,8 @@ class CurrentUser extends Users
     }
 
     /**
-     * @param mixed $memberid
+     * setMemberid sets the member id
+     * @param int $memberid
      */
     public function setMemberid($memberid)
     {

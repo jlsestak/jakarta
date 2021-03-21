@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @author Safal Adhikari and Jessica Sestak
+ * @Version 1.0
+ * classes/products.php
+ * Products class stores the product's information that the user has chosen
+ **/
 class Products
 {
+    //fields
     private $_productId;
     private $_description;
     private $_price;
@@ -10,7 +17,8 @@ class Products
     private $_productname;
 
     /**
-     * @return mixed
+     * getProductname gets the product name
+     * @return String
      */
     public function getProductname()
     {
@@ -18,7 +26,8 @@ class Products
     }
 
     /**
-     * @param mixed $productname
+     * setProductname sets the products name
+     * @param String $productname
      */
     public function setProductname($productname)
     {
@@ -26,26 +35,8 @@ class Products
     }
 
     /**
-     * Products constructor.
-     * @param $_productId
-     * @param $_description
-     * @param $_price
-     * @param $_image1
-     * @param $_image2
-     */
-    /*
-    public function __construct($_productId, $_description, $_price, $_image1, $_image2)
-    {
-        $this->_productId = $_productId;
-        $this->_description = $_description;
-        $this->_price = $_price;
-        $this->_image1 = $_image1;
-        $this->_image2 = $_image2;
-    }
-    */
-
-    /**
-     * @return mixed
+     * getProductId gets the id of the product
+     * @return int
      */
     public function getProductId()
     {
@@ -53,7 +44,8 @@ class Products
     }
 
     /**
-     * @param mixed $productId
+     * setProductId sets the product's id
+     * @param int $productId
      */
     public function setProductId($productId)
     {
@@ -61,7 +53,8 @@ class Products
     }
 
     /**
-     * @return mixed
+     * getDescription gets the description of the product
+     * @return String
      */
     public function getDescription()
     {
@@ -69,7 +62,8 @@ class Products
     }
 
     /**
-     * @param mixed $description
+     * setDescription sets the description of the product
+     * @param String $description
      */
     public function setDescription($description)
     {
@@ -77,7 +71,8 @@ class Products
     }
 
     /**
-     * @return mixed
+     * getPrice gets the price of the product
+     * @return float
      */
     public function getPrice()
     {
@@ -85,7 +80,8 @@ class Products
     }
 
     /**
-     * @param mixed $price
+     * setPrice sets the price of the product
+     * @param float $price
      */
     public function setPrice($price)
     {
@@ -93,7 +89,8 @@ class Products
     }
 
     /**
-     * @return mixed
+     * getImage1 gets the first image name of the product
+     * @return String
      */
     public function getImage1()
     {
@@ -101,7 +98,8 @@ class Products
     }
 
     /**
-     * @param mixed $image1
+     * setImage1 sets the first image name of the product
+     * @param String $image1
      */
     public function setImage1($image1)
     {
@@ -109,7 +107,8 @@ class Products
     }
 
     /**
-     * @return mixed
+     * getImage2 gets the second image name of the product
+     * @return String
      */
     public function getImage2()
     {
@@ -117,7 +116,8 @@ class Products
     }
 
     /**
-     * @param mixed $image2
+     * setImage2 sets the second image name of the product
+     * @param String $image2
      */
     public function setImage2($image2)
     {
