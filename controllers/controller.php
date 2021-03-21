@@ -81,9 +81,9 @@ class Controller
      */
     function product()
     {
-        echo "<pre>";
-        var_dump($_SESSION);
-        echo "</pre>";
+//        echo "<pre>";
+//        var_dump($_SESSION);
+//        echo "</pre>";
 
         global $database;
         $database->getProduct($_SESSION['productSession']);
@@ -107,9 +107,9 @@ class Controller
     // Display Cart Page
     function cart()
     {
-        echo "<pre>";
-        var_dump($_SESSION);
-        echo "</pre>";
+//        echo "<pre>";
+//        var_dump($_SESSION);
+//        echo "</pre>";
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $this->_f3->reroute('/summary');
@@ -183,7 +183,6 @@ class Controller
         session_destroy();
         $_SESSION = array();
         $this->_f3->reroute('../jakarta');
-
     }
 
     /**
@@ -255,7 +254,6 @@ class Controller
                 $this->_f3->set('errors["password"]', "Please give a valid password");
             }
 
-
             if (empty($this->_f3->get('errors'))) {
                 $this->_user = new Users($fname, $lname, $email, $username, $password);
                 $_SESSION['user'] = $this->_user;
@@ -273,5 +271,4 @@ class Controller
         $view = new Template();
         echo $view->render('views/register.html');
     }
-
 }

@@ -1,3 +1,31 @@
 <include href = "views/header.html"></include>
-<h1>Summary</h1>
+
+<div class="container">
+    <p class="display-2">Summary</p>
+
+    <div class="row">
+
+        <p class="lead">
+            You purchased {{ @SESSION.quantity }} {{ @SESSION.product->getProductname() }}
+
+            <div>
+                <img src="images/product/{{ @SESSION.product->getImage1() }}.jpg" alt="..." style="width: 200px">
+            </div>
+
+        </p>
+
+    </div>
+
+    <div class="row">
+        <p class="lead">
+            Thank for you purchase.
+
+            Become a <a href="register">member</a> and save 20% on your future purchases.
+
+            See you next time!
+        </p>
+
+    </div>
+</div>
+
 <include href="views/footer.html"></include>
