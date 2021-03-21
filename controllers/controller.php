@@ -49,10 +49,13 @@ class Controller
      */
     function dog()
     {
+<<<<<<< HEAD
         //stores the page for the user
         $_SESSION['page'] = 'dog';
 
         //checks if the
+=======
+>>>>>>> 67aea9275a6f92b823710566812b740f4c619da6
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $dogToy = $_POST['dogtoy'];
@@ -75,13 +78,23 @@ class Controller
      */
     function product()
     {
-        $_SESSION['page'] = 'product';
        echo "<pre>";
        var_dump($_SESSION);
        echo "</pre>";
 
         global $database;
         $database->getProduct($_SESSION['productSession']);
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $quantity = $_POST['quantity'];
+
+            if(isset($quantity))
+            {
+                $_SESSION['quantity'] = $quantity;
+                $this->_f3->reroute('/cart');
+            }
+        }
 
         //Display a view
         $view = new Template();
@@ -90,9 +103,24 @@ class Controller
         //session_destroy();
     }
 
+<<<<<<< HEAD
     /**
      * routes to the about page
      */
+=======
+    // Display Cart Page
+    function cart()
+    {
+        echo "<pre>";
+        var_dump($_SESSION);
+        echo "</pre>";
+
+        $view = new Template();
+        echo $view->render('views/cart.html');
+    }
+
+    // Display About Page
+>>>>>>> 67aea9275a6f92b823710566812b740f4c619da6
     function about()
     {
         $_SESSION['page'] = 'about';
@@ -252,6 +280,7 @@ class Controller
         echo $view->render('views/register.html');
     }
 
+<<<<<<< HEAD
 
     /**
      *routes user to the cart page
@@ -262,4 +291,6 @@ class Controller
         echo $view->render('views/cart.html');
     }
 
+=======
+>>>>>>> 67aea9275a6f92b823710566812b740f4c619da6
 }
