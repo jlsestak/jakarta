@@ -1,10 +1,9 @@
 <?php
 
-class CurrentUser extends Users {
+class CurrentUser extends Users
+{
     private $_memberid;
-
-
-
+    
     /**
      * @return mixed
      */
