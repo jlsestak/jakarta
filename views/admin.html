@@ -1,5 +1,6 @@
-<include href = "views/header.html"></include>
+<include href="views/header.html"></include>
 
+<!--Container_-->
 <div class="container" id="main">
     <!--Table-->
     <table id="user-purchases" class="table">
@@ -7,17 +8,18 @@
         <thead>
         <tr>
             <th scope="col">Name</th>
-            <th scope="col">Email</td>
-            <th scope="col">Product</td>
-
-
+            <th scope="col">Email</th>
+            </td>
+            <th scope="col">Product</th>
+            </td>
         </tr>
         </thead>
+
         <!-- Table body -->
         <tbody>
         <repeat group="{{@purchases}}" value="{{@purchase}}">
             <tr>
-                <th scope="row">{{@purchase['fname']}} {{@purchase['lname']}}</td>
+                <th scope="row">{{@purchase['fname']}} {{@purchase['lname']}}</th>
                 <td>{{@purchase['email']}}</td>
                 <td>{{@purchase['productname']}}</td>
             </tr>
@@ -25,4 +27,5 @@
         </tbody>
     </table>
 </div>
+<!--Footer-->
 <include href="views/footer.html"></include>

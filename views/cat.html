@@ -1,4 +1,4 @@
-<include href = "views/header.html"></include>
+<include href="views/header.html"></include>
 
 <style>
 
@@ -6,45 +6,46 @@
         background: #a1b7ba !important;
     }
 
-    .gal-img{
-        width:300px;
-        margin:50px;
-        box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .gal-img {
+        width: 300px;
+        margin: 50px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
-
 </style>
 
+<!--Container-->
 <div class="container">
+    <!--Cat Toys-->
     <h1 class="display-2">Cat Toys</h1>
-
+    <!--Shop the Collection-->
     <p class="text-center h1">Shop the collection</p>
-
+    <!--Form-->
     <form method="post" action="#">
         <div class="row">
-
+            <!--Column Cat Toy 1-->
             <div class="col-lg-6 col-md-6 col-sm-10">
                 <label>
-                    <img src="images/product/catnip.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img"  alt="Water Fish">
+                    <img src="images/product/catnip.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img"
+                         alt="Water Fish">
                     <p class="fs-2 text-center" style="margin-left: 15px;">Catnip Buddies</p>
                     <input type="radio" name="cattoy" value="3">
                 </label>
             </div>
-
+            <!--Column Cat Toy 2-->
             <div class="col-lg-6 col-md-6 col-sm-10">
                 <label>
-                <img src="images/product/ballroller.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Fish ball">
+                    <img src="images/product/ballroller.jpg" style="height: 200px"
+                         class="rounded mx-auto d-block gal-img" alt="Fish ball">
                     <p class="fs-2 text-center">Tower of Tracks</p>
                     <input type="radio" name="cattoy" value="4">
                 </label>
             </div>
         </div>
-
+        <!--Submit Button-->
         <div class="m-2 p-2">
             <input type="submit" class="btn btn-secondary btn-lg" value="Next >">
         </div>
-
     </form>
-
 </div>
-
+<!--Footer-->
 <include href="views/footer.html"></include>

@@ -1,4 +1,4 @@
-<include href = "views/header.html"></include>
+<include href="views/header.html"></include>
 
 <style>
 
@@ -6,46 +6,48 @@
         background: #a1b7ba !important;
     }
 
-    .gal-img{
-        width:300px;
-        margin:50px;
-        box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .gal-img {
+        width: 300px;
+        margin: 50px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
 </style>
 
+<!--Container-->
 <div class="container">
+    <!-- Dog Toys -->
     <h1 class="display-2">Dog Toys</h1>
-
+    <!-- Shop the collection -->
     <p class="text-center h1">Shop the collection</p>
-
+    <!-- Form -->
     <form method="post" action="#">
         <div class="row">
-
+            <!-- Column Dog Toy 1 -->
             <div class="col-lg-6 col-md-6 col-sm-10">
                 <label>
-                <img src="images/product/kong.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Kong">
+                    <img src="images/product/kong.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img"
+                         alt="Kong">
                     <p class="fs-2 text-center" style="margin-left: 15px;">Kong</p>
                     <input type="radio" name="dogtoy" value="1">
                 </label>
             </div>
-
+            <!-- Column Dog Toy 2 -->
             <div class="col-lg-6 col-md-6 col-sm-10">
                 <label>
-                <img src="images/product/bonebone.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img" alt="Rope">
+                    <img src="images/product/bonebone.jpg" style="height: 200px" class="rounded mx-auto d-block gal-img"
+                         alt="Rope">
                     <p class="fs-2 text-center">Benebone Wishbone</p>
                     <input type="radio" name="dogtoy" value="2">
                 </label>
             </div>
         </div>
-
+        <!-- Submit butto-->
         <div class="m-2 p-2">
             <input type="submit" class="btn btn-secondary btn-lg" value="Next >">
         </div>
-
     </form>
-
 </div>
-
+<!-- Footer-->
 <include href="views/footer.html"></include>
 

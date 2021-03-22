@@ -1,47 +1,56 @@
 <include href = "views/header.html"></include>
+
+<!--Container -->
 <div class="container">
 
     <!--Row -->
     <div class="row">
 
+        <!--Column My Cart -->
         <div class="col-lg-6 col-md-6 col-sm-10">
             <p class="display-3">my cart</p>
             <hr>
+            <!--Row -->
             <div class="row">
+                <!--Column Image 1 -->
                 <div class="col-4">
                     <img src="images/product/{{ @SESSION.product->getImage1() }}.jpg" class="img-thumbnail" alt="...">
                 </div>
-
+                <!--Column Product Name and Price -->
                 <div class="col-4">
                     <p class="fs-5 fw-bold">{{ @SESSION.product->getProductname() }}</p>
                     <p class="fs-5">${{ @SESSION.product->getPrice() }}</p>
                 </div>
-
+                <!--Column quantity and price-->
                 <div class="col-4">
                     <p class="fs-5">Quantity: {{ @SESSION.quantity }}</p> x <span>${{ @SESSION.product->getPrice() }}</span>
                 </div>
-            </div>
-            <hr>
+            </div> <hr>
         </div>
-
+        <!--Column Order Summary-->
         <div class="col-lg-6 col-md-6 col-sm-10">
             <p class="display-3">order summary</p>
             <hr>
             <check if="{{@SESSION['currentUser']}}">
+                <!--Row -->
             <div class="row">
+                <!--Column Member Savings -->
                 <div class="col-6">
                     <p class="fs-3 fw-bold text-success">member savings</p>
                 </div>
-                <div class="col-6 fs-1 fw-bold text-success">
+                <!--Column Member discount-->
+                <div class="col-6 fs-3 fw-bold text-success">
                     ${{ round(@SESSION.quantity * @SESSION.product->getPrice()* .20,2) }}
                 </div>
             </div>
             </check>
+            <!--Row -->
             <div class="row">
+                <!--Column Subtotal -->
                 <div class="col-6 fs-1 fw-bold">
                     <p class="fs-1 fw-bold">subtotal</p>
                 </div>
-
+                <!--Column Member savings Total -->
                 <div class="col-6 fs-1 fw-bold">
                     <check if="{{@SESSION['currentUser']}}">
                         <true>${{ round((@SESSION.quantity * @SESSION.product->getPrice())-(@SESSION.quantity * @SESSION.product->getPrice()*.20),2 ) }}</true>
@@ -49,11 +58,10 @@
                     </check>
                 </div>
             </div>
-
             <p class="text-muted text-center">
                 taxes and shipping calculated at checkout
             </p>
-
+            <!--Submit Button-->
             <form method="post" action="#">
                 <div class="m-2 p-2 d-grid gap-2">
                     <input type="submit" class="btn btn-secondary btn-lg" value="check out">
@@ -61,7 +69,6 @@
             </form>
         </div>
     </div>
-
 </div>
-
+<!--Footer -->
 <include href="views/footer.html"></include>

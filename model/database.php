@@ -102,7 +102,8 @@ class Database
      * getUserPurchases gets the user
      * @return associative array
      */
-    function getUserPurchase() {
+    function getUserPurchase()
+    {
         //define the query
         $sql = "SELECT primeusers.fname, primeusers.lname, primeusers.email, product.productname
         FROM primeusers
@@ -112,63 +113,94 @@ class Database
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
+        //Execute the statement
         $statement->execute();
 
-        //Get the results
+        //Return the results
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
 
     }
 
-    function checkUserName($username){
+    function checkUserName($username)
+    {
+        //Define the query
         $sql = "SELECT * FROM primeusers WHERE username = :username";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
-        //Execute
+        //bind the parameters
         $id = $username;
         $statement->bindParam(':username', $id, PDO::PARAM_STR);
 
+        //Execute the statement
         $statement->execute();
+
+        //Get the results
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-        if($username == $result['username']) {
+
+        //if the username matches the username return true
+        if ($username == $result['username']) {
             return false;
         }
         return true;
     }
 
-    function checkCredentials($username, $password) {
+    /**
+     * checkCredentials checks that the username and password are stored
+     * in the database
+     * @param $username String
+     * @param $password String
+     * @return boolean
+     */
+    function checkCredentials($username, $password)
+    {
+        //Define the query
         $sql = "SELECT * FROM primeusers WHERE username = :username";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
-        //Execute
+        //Bind the parameters
         $id = $username;
         $statement->bindParam(':username', $id, PDO::PARAM_STR);
 
+        //Execute
         $statement->execute();
+
+        //Get the results
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-        if($username == $result['username'] && $password ==$result['password']) {
-            $currentUser = new CurrentUser($result['fname'],$result['fname'],$result['email'],$result['username'],
+
+        //Store the results in the currentUser class and return true if username and password match
+        if ($username == $result['username'] && $password == $result['password']) {
+            $currentUser = new CurrentUser($result['fname'], $result['fname'], $result['email'], $result['username'],
                 $result['password']);
             $currentUser->setMemberid($result['primeuserid']);
             $_SESSION['currentUser'] = $currentUser;
             return true;
         }
         return false;
-
-
     }
-    function storePurchases( $productid) {
+
+    /**
+     * storePurchases stores the purchases of the member in a table
+     * @param $productid int
+     */
+    function storePurchases($productid)
+    {
+
+        //Define the query
         $sql = "INSERT INTO productprime (productid, primeuserid)
 	            VALUES (:productid, :userid)";
 
+        //get the currentUser information
         $user = $_SESSION['currentUser'];
+
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 
+        //Bind the parameters
         $statement->bindParam(':userid', $user->getMemberId(), PDO::PARAM_INT);
         $statement->bindParam(':productid', $productid, PDO::PARAM_INT);
 

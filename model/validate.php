@@ -1,20 +1,13 @@
 <?php
+
 /**
  * @author Safal Adhikari and Jessica Sestak
  * @Version 1.0
  * model/validate.php
  * Contains validation for User Registration form
  **/
-
 class Validate
 {
-    private $_dataLayer;
-
-    function __construct($_dataLayer)
-    {
-        $this->_dataLayer = $_dataLayer;
-    }
-
     /**
      * validName() Checks to see if user's names are alphabetic and are not empty
      * @param String $name
@@ -23,7 +16,6 @@ class Validate
     function validName($name)
     {
         return !empty($name) && ctype_alpha($name);
-
     }
 
     /**
@@ -66,10 +58,8 @@ class Validate
     function validPassword($password)
     {
         return !empty($password) && strlen($password) >= '8'
-            && preg_match("#[0-9]+#",$password)
-            && preg_match("#[A-Z]+#",$password)
-            && preg_match("#[a-z]+#",$password);
+            && preg_match("#[0-9]+#", $password)
+            && preg_match("#[A-Z]+#", $password)
+            && preg_match("#[a-z]+#", $password);
     }
-
-
 }

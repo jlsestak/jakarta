@@ -16,7 +16,7 @@ session_start();
 //Create an instance of the Base class
 $f3 = Base::instance();
 $dataLayer = new DataLayer();
-$validator = new Validate($dataLayer);
+$validator = new Validate();
 $controller = new Controller($f3);
 $database = new Database($dbh);
 
@@ -64,6 +64,7 @@ $f3->route('GET|POST /login', function ($f3){
     global $controller;
     $controller->login();
 });
+
 // Define a logout page route
 $f3->route('GET /logout', function ($f3){
     global $controller;
