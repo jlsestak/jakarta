@@ -1,4 +1,4 @@
-<include href = "views/header.html"></include>
+<include href="views/header.html"></include>
 
 <!--Container -->
 <div class="container">
@@ -23,9 +23,11 @@
                 </div>
                 <!--Column quantity and price-->
                 <div class="col-4">
-                    <p class="fs-5">Quantity: {{ @SESSION.quantity }}</p> x <span>${{ @SESSION.product->getPrice() }}</span>
+                    <p class="fs-5">Quantity: {{ @SESSION.quantity }}</p> x
+                    <span>${{ @SESSION.product->getPrice() }}</span>
                 </div>
-            </div> <hr>
+            </div>
+            <hr>
         </div>
         <!--Column Order Summary-->
         <div class="col-lg-6 col-md-6 col-sm-10">
@@ -33,16 +35,16 @@
             <hr>
             <check if="{{@SESSION['currentUser']}}">
                 <!--Row -->
-            <div class="row">
-                <!--Column Member Savings -->
-                <div class="col-6">
-                    <p class="fs-3 fw-bold text-success">member savings</p>
+                <div class="row">
+                    <!--Column Member Savings -->
+                    <div class="col-6">
+                        <p class="fs-3 fw-bold text-success">member savings</p>
+                    </div>
+                    <!--Column Member discount-->
+                    <div class="col-6 fs-3 fw-bold text-success">
+                        ${{number_format((@SESSION.quantity * @SESSION.product->getPrice()* .20),2,'.','')}}
+                    </div>
                 </div>
-                <!--Column Member discount-->
-                <div class="col-6 fs-3 fw-bold text-success">
-                    ${{ round(@SESSION.quantity * @SESSION.product->getPrice()* .20,2) }}
-                </div>
-            </div>
             </check>
             <!--Row -->
             <div class="row">
@@ -53,8 +55,10 @@
                 <!--Column Member savings Total -->
                 <div class="col-6 fs-1 fw-bold">
                     <check if="{{@SESSION['currentUser']}}">
-                        <true>${{ round((@SESSION.quantity * @SESSION.product->getPrice())-(@SESSION.quantity * @SESSION.product->getPrice()*.20),2 ) }}</true>
-                        <false>${{ round(@SESSION.quantity * @SESSION.product->getPrice(), 2) }}</false>
+                        <true>${{ number_format((@SESSION.quantity * @SESSION.product->getPrice())-(@SESSION.quantity *
+                            @SESSION.product->getPrice()*.20),2,'.','') }}
+                        </true>
+                        <false>${{ number_format(@SESSION.quantity * @SESSION.product->getPrice(),2,'.','') }}</false>
                     </check>
                 </div>
             </div>

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author Safal Adhikari and Jessica Sestak
+ * @Version 1.0
+ * index.php
+ * index page routes to all of the pages
+ **/
 //Turn on error reporting -- this is critical!
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -15,7 +21,7 @@ session_start();
 
 //Create an instance of the Base class
 $f3 = Base::instance();
-$dataLayer = new DataLayer();
+
 $validator = new Validate();
 $controller = new Controller($f3);
 $database = new Database($dbh);
@@ -45,18 +51,6 @@ $f3->route('GET|POST /dog', function (){
 $f3->route('GET|POST /product', function ($f3){
    global $controller;
    $controller->product();
-});
-
-// Define an about route
-$f3->route('GET /about', function ($f3){
-    global $controller;
-    $controller->about();
-});
-
-// Define a contact route
-$f3->route('GET /contact', function ($f3){
-    global $controller;
-    $controller->contact();
 });
 
 // Define a login route

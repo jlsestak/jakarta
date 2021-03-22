@@ -2,7 +2,7 @@
 
 <div class="container">
     <p class="display-2">Summary</p>
-
+    <br>
     <div class="row">
 
         <p class="lead">
@@ -17,14 +17,14 @@
     </div>
 
     <div class="row">
-        <p class="lead">
-            Thank for you purchase.
-
-            Become a <a href="register">member</a> and save 20% on your future purchases.
-
-            See you next time!
-        </p>
-
+        <check if="{{@SESSION['currentUser']}}">
+            <false><p class="lead">
+            Thank for you purchase!<br><br> Become a <a href="register">member</a> and save 20% on your future purchases.
+            See you next time! </p></false>
+            <true><p class="lead">Thank you for being a member {{@SESSION.currentUser->getFirstname()}}, you
+            saved a total of ${{ number_format((@SESSION.quantity * @SESSION.product->getPrice()* .20),2,'.','') }}!
+            See you next time! </p></true>
+        </check>
     </div>
 
     <br>
