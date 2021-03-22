@@ -1,0 +1,36 @@
+body {
+    background: #a1b7ba !important;
+}
+
+.gal-img{
+    width:300px;
+    margin:50px;
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*---Media Queries --*/
+@media (max-width: 992px) {
+    .gal-img2{
+        width:500px;
+        margin:40px;
+        box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+
+@media (max-width: 768px) {
+    .gal-img2{
+        width:250px;
+        margin:20px;
+        box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+
+@media (max-width: 576px) {
+    .gal-img2{
+        width:50px;
+        margin:10px;
+        box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+
+

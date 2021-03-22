@@ -1,20 +1,24 @@
 <include href = "views/header.html"></include>
+
 <div class="container">
     <h1>Register</h1>
-    <form action="#" method="post">
+    <form id="guestForm" action="#" method="post">
 
         <!--First Name -->
         <div class="form-group">
             <label for="fname">First Name</label>
             <input type="text" class="form-control" id="fname" name="fname" value="{{@userFName}}">
+            <span class="d-none text-danger" id="errorFname">Please enter a first name</span>
             <check if=" {{ isset(@errors['fname'])}}">
                 {{@errors['fname']}}<br>
             </check>
         </div>
+
         <!--Last Name -->
         <div class="form-group">
             <label for="lname">Last Name</label>
             <input type="text" class="form-control" id="lname" name="lname" value ="{{@userLName}}">
+            <span class="d-none text-danger" id="errorLname">Please enter a last name</span>
             <check if=" {{ isset(@errors['lname'])}}">
                 {{@errors['lname']}}<br>
             </check>
@@ -24,6 +28,7 @@
         <div class="form-group">
             <label for="email">Email</label>
             <input type="text" class="form-control" id="email" name="email" value ="{{@userEmail}}">
+            <span class="d-none text-danger" id="noEmail">Please enter your email address</span>
             <check if=" {{ isset(@errors['email'])}}">
                 {{@errors['email']}}<br>
             </check>
@@ -33,6 +38,7 @@
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" value ="{{@userUserName}}">
+            <span class="d-none text-danger" id="noUsername">Please enter your username</span>
             <check if=" {{ isset(@errors['username'])}}">
                 {{@errors['username']}}<br>
             </check>
@@ -62,5 +68,10 @@
         </div><br>
 
     </form>
+
+    <br>
+    <br>
+    <br>
 </div>
+
 <include href="views/footer.html"></include>
