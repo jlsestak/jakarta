@@ -48,6 +48,7 @@
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" name="password" value ="{{@userPassword}}">
+            <span class="d-none text-danger" id="noPassword">Please enter your password</span>
             <check if=" {{ isset(@errors['password'])}}">
                 {{@errors['password']}}<br>
             </check>
@@ -57,6 +58,7 @@
         <div class="form-group">
             <label for="confirmPass">Confirm Password</label>
             <input type="confirmPass" class="form-control" id="confirmPass" name="confirmPass">
+            <span class="d-none text-danger" id="confirmPassword">Please confirm your password</span>
             <check if=" {{ isset(@errors['passCheck'])}}">
                 {{@errors['passCheck']}}<br>
             </check>

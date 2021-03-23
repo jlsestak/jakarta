@@ -52,6 +52,24 @@ function validate()
         isValid = false; // when isValid is false, it doesn't send the data to server. stays on the form page
     }
 
+    // Validate password
+    let passWord = document.getElementById("password").value;
+    if(passWord === "")
+    {
+        let errorPassword = document.getElementById("noPassword");
+        errorPassword.classList.remove("d-none");
+        isValid = false; // when isValid is false, it doesn't send the data to server. stays on the form page
+    }
+
+    // Confirm password
+    let confirmWord = document.getElementById("confirmPass").value;
+    if(confirmWord === "")
+    {
+        let errorConfirmWord = document.getElementById("confirmPassword");
+        errorConfirmWord.classList.remove("d-none");
+        isValid = false; // when isValid is false, it doesn't send the data to server. stays on the form page
+    }
+
     return isValid;
 }
 
