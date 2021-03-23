@@ -173,7 +173,7 @@ class Database
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         //Store the results in the currentUser class and return true if username and password match
-        if ($username == $result['username'] && $password == $result['password']) {
+        if ($username == $result['username'] && $password == $result['password'] &&  $username != "") {
             $currentUser = new CurrentUser($result['fname'], $result['fname'], $result['email'], $result['username'],
                 $result['password']);
             $currentUser->setMemberid($result['primeuserid']);
