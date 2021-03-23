@@ -18,7 +18,7 @@ You can view the project [here!](https://safal.greenriverdev.com/sdev328/jakarta
 
 * Has a clearly defined database layer using PDO and prepared statements. You should have at least two related tables.
   
-  PDO and prepared statements are used in the database.php file. We have three tables: prime users, product, and productprime in this project. The productprime table joins the users and product tables using the foreign keys.
+  PDO and prepared statements are used in the database.php file. We have three tables: prime users, product, and productprime (purchases) in this project. The productprime table joins the users and product tables using the foreign keys.
 
 
 * Data can be viewed and added.
